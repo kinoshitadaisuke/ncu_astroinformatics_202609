@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:15:32 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:21:42 (UT+08:00) daisuke>
 #
 
 # importing math module
 import math
 
-# a number
-a = 1000000
+# main function
+def main ():
+    # a number
+    a = 1000000
 
-# calculation of natural logarithm
-b = math.log10 (a)
+    # calculation of natural logarithm
+    b = math.log10 (a)
 
-# printing result of calculation
-print (f'a = {a}')
-print (f'b = log10 (a) = log10 ({a}) = {b}')
+    # printing result of calculation
+    print (f'a = {a}')
+    print (f'b = log10 (a) = log10 ({a}) = {b}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
