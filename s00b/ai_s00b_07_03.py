@@ -1,45 +1,51 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:20:44 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:36:14 (UT+08:00) daisuke>
 #
 
 # importing sys module
 import sys
 
-# printing a message
-print (f'This Python script adds two integers and print result of calculation.')
-
-# receiving two numbers
-a = input ('input first integer: ')
-b = input ('input second integer: ')
-
-# conversion of string "a" into integer
-try:
-    # conversion
-    a = int (a)
-except:
+# main function
+def main ():
     # printing a message
-    print (f'Error: string "{a}" cannot be converted into an integer.')
-    # exit the script
-    sys.exit (1)
-else:
-    print (f'string "{a}" is successfully converted into an integer.')
+    print (f'This Python script adds two integers and print result of calculation.')
 
-# conversion of string "b" into integer
-try:
-    # conversion
-    b = int (b)
-except:
-    # printing a message
-    print (f'Error: string "{b}" cannot be converted into an integer.')
-    # exit the script
-    sys.exit (1)
-else:
-    print (f'string "{b}" is successfully converted into an integer.')
+    # receiving two numbers
+    a = input ('input first integer: ')
+    b = input ('input second integer: ')
 
-# calculation
-c = a + b
+    # conversion of string "a" into integer
+    try:
+        # conversion
+        a = int (a)
+    except:
+        # printing a message
+        print (f'Error: string "{a}" cannot be converted into an integer.')
+        # exit the script
+        sys.exit (1)
+    else:
+        print (f'string "{a}" is successfully converted into an integer.')
 
-# printing result of calculation
-print (f'{a} + {b} = {c}')
+    # conversion of string "b" into integer
+    try:
+        # conversion
+        b = int (b)
+    except:
+        # printing a message
+        print (f'Error: string "{b}" cannot be converted into an integer.')
+        # exit the script
+        sys.exit (1)
+    else:
+        print (f'string "{b}" is successfully converted into an integer.')
+
+    # calculation
+    c = a + b
+
+    # printing result of calculation
+    print (f'{a} + {b} = {c}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
