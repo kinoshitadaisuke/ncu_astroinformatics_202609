@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:18:38 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:27:44 (UT+08:00) daisuke>
 #
 
 # defining a function to calculate a square of given number
@@ -11,12 +11,18 @@ def calc_square (a):
     # returning result of calculation
     return (sq)
 
-# a number
-x = 9
+# main function
+def main ():
+    # a number
+    x = 9
 
-# using the function "calc_square ()"
-sq_x = calc_square (x)
+    # using the function "calc_square ()"
+    sq_x = calc_square (x)
 
-# printing result of calculation
-print (f'x    = {x}')
-print (f'x**2 = {x}**2 = {sq_x}')
+    # printing result of calculation
+    print (f'x    = {x}')
+    print (f'x**2 = {x}**2 = {sq_x}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
