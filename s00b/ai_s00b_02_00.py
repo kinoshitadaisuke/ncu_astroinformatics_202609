@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:17:17 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:23:46 (UT+08:00) daisuke>
 #
 
 # importing sys modulje
 import sys
 
-# reading an integer number from keyboard typing
-a_str = input ('Type one integer number: ')
+# main function
+def main ():
+    # reading an integer number from keyboard typing
+    a_str = input ('Type one integer number: ')
 
-# converting a string into integer
-try:
-    a = int (a_str)
-except:
-    print (f'ERROR: failed to convert string "{a_str}" into integer!')
-    sys.exit (1)
+    # converting a string into integer
+    try:
+        a = int (a_str)
+    except:
+        print (f'ERROR: failed to convert string "{a_str}" into integer!')
+        sys.exit (1)
 
-# if and else statements
-if (a % 2 == 0):
-    print ("The number you type is an even number.")
-else:
-    print ("The number you type is an odd number.")
+    # if and else statements
+    if (a % 2 == 0):
+        print ("The number you type is an even number.")
+    else:
+        print ("The number you type is an odd number.")
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
