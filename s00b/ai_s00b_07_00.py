@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:20:21 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:35:09 (UT+08:00) daisuke>
 #
 
-# two numbers
-a = 3
-b = 0
+# main function
+def main ():
+    # two numbers
+    a = 3
+    b = 0
 
-# calculation
-c = a / b
+    # calculation
+    c = a / b
 
-# printing result of calculation
-print (f'{a} / {b} = {c}')
+    # printing result of calculation
+    print (f'{a} / {b} = {c}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
