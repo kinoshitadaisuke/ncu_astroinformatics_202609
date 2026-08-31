@@ -1,7 +1,7 @@
 # Astroinformatics
 
 ```
-Time-stamp: <2026/08/31 18:09:42 (UT+08:00) daisuke>
+Time-stamp: <2026/08/31 18:10:50 (UT+08:00) daisuke>
 ```
 
 This is a repository for the course "Astroinformatics" (course ID: AS6095) offered at the Institute of Astronomy, National Central University from September 2026 to December 2026.
@@ -31,10 +31,10 @@ This is a repository for the course "Astroinformatics" (course ID: AS6095) offer
 |04|28/Sep/2026|09:00-11:50|---|No class due to public holiday|
 |05|05/Oct/2026|09:00-11:50|Making 3-colour composite images #1||
 |06|12/Oct/2026|09:00-11:50|Making 3-colour composite images #2||
-|07|19/Oct/2026|09:00-11:50|Periodicity analysis \#1||
+|07|19/Oct/2026|09:00-11:50|Periodicity analysis #1||
 |08|26/Oct/2026|09:00-11:50|---|No class due to public holiday|
-|09|02/Nov/2026|09:00-11:50|Periodicity analysis \#1||
-|10|09/Nov/2026|09:00-11:50|Periodicity analysis \#1||
+|09|02/Nov/2026|09:00-11:50|Periodicity analysis #2||
+|10|09/Nov/2026|09:00-11:50|Periodicity analysis #3||
 |11|16/Nov/2026|09:00-11:50|N-body simulation using REBOUND #1||
 |12|23/Nov/2026|09:00-11:50|N-body simulation using REBOUND #2||
 |13|30/Nov/2026|09:00-11:50|N-body simulation using REBOUND #3||
