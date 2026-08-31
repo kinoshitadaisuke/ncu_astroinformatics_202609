@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:15:16 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:20:57 (UT+08:00) daisuke>
 #
 
 # importing math module
 import math
 
-# a number
-a = -1.0
+# main function
+def main ():
+    # a number
+    a = -1.0
 
-# calculation of exponential function
-b = math.exp (a)
+    # calculation of exponential function
+    b = math.exp (a)
 
-# printing result of calculation
-print (f'a = {a}')
-print (f'b = exp (a) = {math.e}^{a} = {b}')
+    # printing result of calculation
+    print (f'a = {a}')
+    print (f'b = exp (a) = {math.e}^{a} = {b}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
