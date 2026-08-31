@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/21 11:14:30 (UT+08:00) daisuke>
+# Time-stamp: <2026/08/31 19:19:05 (UT+08:00) daisuke>
 #
 
-# two numbers
-a, b = 13, 17
+# main function
+def main ():
+    # two numbers
+    a, b = 13, 17
 
-# calculation
-c = a * b
+    # calculation
+    c = a * b
 
-# printing result of calculation
-print (f'a = {a}')
-print (f'b = {b}')
-print (f'c = a * b = {a} * {b} = {c}')
+    # printing result of calculation
+    print (f'a = {a}')
+    print (f'b = {b}')
+    print (f'c = a * b = {a} * {b} = {c}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
