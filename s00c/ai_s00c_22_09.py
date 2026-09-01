@@ -1,21 +1,27 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:14:18 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 11:18:21 (UT+08:00) daisuke>
 #
 
 # importing sympy module
 import sympy
 
-# variable x
-x = sympy.symbols ('x')
+# main function
+def main ():
+    # variable x
+    x = sympy.symbols ('x')
 
-# function f
-f = 1/x
+    # function f
+    f = 1/x
 
-# integration of f(x)
-I = sympy.integrate (f, x)
+    # integration of f(x)
+    I = sympy.integrate (f, x)
 
-# printing result
-print (f'f(x)  = {f}')
-print (f'integration of f(x) = {I}')
+    # printing result
+    print (f'f(x)  = {f}')
+    print (f'integration of f(x) = {I}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
