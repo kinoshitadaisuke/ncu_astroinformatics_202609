@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:09:58 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 11:10:27 (UT+08:00) daisuke>
 #
 
 # importing random module
 import random
 
-# initialisation of random number generator
-random.seed ()
+# main function
+def main ():
+    # initialisation of random number generator
+    random.seed ()
 
-#
-# generating 10 random numbers of uniform distribution between 0 and 1
-#
+    #
+    # generating 10 random numbers of uniform distribution between 0 and 1
+    #
 
-# generating 10 random numbers
-print (f'10 random numbers of uniform distribution between 0 and 1')
-for i in range (10):
-    # generation of a random number of uniform distribution between 0 and 1
-    r = random.random ()
-    # printing generated random number
-    print (f'  {r:15.13f}')
+    # generating 10 random numbers
+    print (f'10 random numbers of uniform distribution between 0 and 1')
+    for i in range (10):
+        # generation of a random number of uniform distribution between 0 and 1
+        r = random.random ()
+        # printing generated random number
+        print (f'  {r:15.13f}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
