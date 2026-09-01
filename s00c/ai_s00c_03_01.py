@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:01:53 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 10:46:16 (UT+08:00) daisuke>
 #
 
-# input file name
-file_input = 'pi_1000.txt'
+# main function
+def main ():
+    # input file name
+    file_input = 'pi_1000.txt'
 
-# opening file for reading
-with open (file_input, 'r') as fh_read:
-    # reading file line-by-line
-    for line in fh_read:
-        # printing line
-        print (f'{line}', end='')
+    # opening file for reading
+    with open (file_input, 'r') as fh_read:
+        # reading file line-by-line
+        for line in fh_read:
+            # printing line
+            print (f'{line}', end='')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
