@@ -1,37 +1,43 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:00:23 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 10:30:13 (UT+08:00) daisuke>
 #
 
 # importing os module
 import os
 
-# getting a list of files and directory
-list_files1 = os.scandir ()
+# main function
+def main ():
+    # getting a list of files and directory
+    list_files1 = os.scandir ()
 
-# printing list of files and directory
-print (f'files and directories:')
-for obj in list_files1:
-    print (f'  {obj.name}')
-    print (f'    is_dir = {obj.is_dir ()}')
-    print (f'    mode   = {oct (obj.stat ().st_mode)}')
+    # printing list of files and directory
+    print (f'files and directories:')
+    for obj in list_files1:
+        print (f'  {obj.name}')
+        print (f'    is_dir = {obj.is_dir ()}')
+        print (f'    mode   = {oct (obj.stat ().st_mode)}')
 
-# directory name
-dir_new = 'mynewdir'
+    # directory name
+    dir_new = 'mynewdir'
 
-# changing file mode
-#   7 = 2^0 + 2^1 + 2^2 = 1 + 2 + 4 ==> read, write, execute are allowed
-#   5 = 2^0       + 2^2 = 1 + 4     ==> read, execute are allowed
-#   0                               ==> read, write, execute are not allowed
-os.chmod (dir_new, 0o750)
+    # changing file mode
+    #   7 = 2^0 + 2^1 + 2^2 = 1 + 2 + 4 ==> read, write, execute are allowed
+    #   5 = 2^0       + 2^2 = 1 + 4     ==> read, execute are allowed
+    #   0                               ==> read, write, execute are not allowed
+    os.chmod (dir_new, 0o750)
 
-# getting a list of files and directory
-list_files2 = os.scandir ()
+    # getting a list of files and directory
+    list_files2 = os.scandir ()
 
-# printing list of files and directory
-print (f'files and directories:')
-for obj in list_files2:
-    print (f'  {obj.name}')
-    print (f'    is_dir = {obj.is_dir ()}')
-    print (f'    mode   = {oct (obj.stat ().st_mode)}')
+    # printing list of files and directory
+    print (f'files and directories:')
+    for obj in list_files2:
+        print (f'  {obj.name}')
+        print (f'    is_dir = {obj.is_dir ()}')
+        print (f'    mode   = {oct (obj.stat ().st_mode)}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
