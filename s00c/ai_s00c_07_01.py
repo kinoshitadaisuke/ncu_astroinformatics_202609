@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/03 11:32:11 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 11:34:34 (UT+08:00) daisuke>
 #
 
 # importing multiprocessing module
 import multiprocessing
-
-# number of CPUs to be used
-n_cpu = 4
-
-# output file name
-file_output = 'prime_numbers_4.data'
-
-# start and end numbers
-n_start = 2
-n_end   = 10**5
 
 # function to check whether or not the number is a prime number
 def is_prime_number (x):
@@ -32,21 +22,37 @@ def is_prime_number (x):
     # returning number and a flag "pn"
     return (x, pn)
 
-# numbers to be checked
-numbers = range (n_start, n_end + 1)
+# main function
+def main ():
+    # number of CPUs to be used
+    n_cpu = 4
 
-# executing the function
-if __name__ == '__main__':
-    # making a pool of workers
-    pool = multiprocessing.Pool (n_cpu)
+    # output file name
+    file_output = 'prime_numbers_4.data'
 
-    # executing function for different numbers in parallel
-    results = pool.map (is_prime_number, numbers)
+    # start and end numbers
+    n_start = 2
+    n_end   = 10**5
 
-    # opening file for writing
-    with open (file_output, 'w') as fh_out:
-        # for each number in the list "list_pn"
-        for x, pn in results:
-            # writing number to the file
-            if (pn):
-                fh_out.write (f'{x}\n')
+    # numbers to be checked
+    numbers = range (n_start, n_end + 1)
+
+    # executing the function
+    if __name__ == '__main__':
+        # making a pool of workers
+        pool = multiprocessing.Pool (n_cpu)
+
+        # executing function for different numbers in parallel
+        results = pool.map (is_prime_number, numbers)
+
+        # opening file for writing
+        with open (file_output, 'w') as fh_out:
+            # for each number in the list "list_pn"
+            for x, pn in results:
+                # writing number to the file
+                if (pn):
+                    fh_out.write (f'{x}\n')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
