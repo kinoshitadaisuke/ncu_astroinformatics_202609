@@ -1,44 +1,50 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:00:14 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 10:29:46 (UT+08:00) daisuke>
 #
 
 # importing os module
 import os
 
-# getting currently working directory
-cwd = os.getcwd ()
+# main function
+def main ():
+    # getting currently working directory
+    cwd = os.getcwd ()
 
-# printing currently working directory
-print (f'cwd = "{cwd}"')
+    # printing currently working directory
+    print (f'cwd = "{cwd}"')
 
-# getting a list of files and directory
-list_files1 = os.scandir ()
+    # getting a list of files and directory
+    list_files1 = os.scandir ()
 
-# printing list of files and directory
-print (f'files and directories:')
-for obj in list_files1:
-    print (f'  {obj.name}')
-    print (f'    is_dir = {obj.is_dir ()}')
+    # printing list of files and directory
+    print (f'files and directories:')
+    for obj in list_files1:
+        print (f'  {obj.name}')
+        print (f'    is_dir = {obj.is_dir ()}')
 
-# new directory name
-dir_new = 'mynewdir'
+    # new directory name
+    dir_new = 'mynewdir'
 
-# printing status
-print (f'now, making a new directory...')
+    # printing status
+    print (f'now, making a new directory...')
 
-# making a new directory
-os.mkdir (dir_new)
+    # making a new directory
+    os.mkdir (dir_new)
 
-# printing status
-print (f'finished making a new directory!')
+    # printing status
+    print (f'finished making a new directory!')
 
-# getting a list of files and directory
-list_files2 = os.scandir ()
+    # getting a list of files and directory
+    list_files2 = os.scandir ()
 
-# printing list of files and directory
-print (f'files and directories:')
-for obj in list_files2:
-    print (f'  {obj.name}')
-    print (f'    is_dir = {obj.is_dir ()}')
+    # printing list of files and directory
+    print (f'files and directories:')
+    for obj in list_files2:
+        print (f'  {obj.name}')
+        print (f'    is_dir = {obj.is_dir ()}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
