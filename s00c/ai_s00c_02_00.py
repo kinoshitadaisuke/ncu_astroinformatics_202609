@@ -1,28 +1,34 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:01:06 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 10:44:31 (UT+08:00) daisuke>
 #
 
 # importing argparse module
 import argparse
 
-# making a parser object for command-line argument analysis
-parser = argparse.ArgumentParser (description='adding two integers')
+# main function
+def main ():
+    # making a parser object for command-line argument analysis
+    parser = argparse.ArgumentParser (description='adding two integers')
 
-# adding arguments
-parser.add_argument ('n1', type=int, default=1, help='number 1')
-parser.add_argument ('n2', type=int, default=1, help='number 2')
+    # adding arguments
+    parser.add_argument ('n1', type=int, default=1, help='number 1')
+    parser.add_argument ('n2', type=int, default=1, help='number 2')
 
-# command-line argument analysis
-args = parser.parse_args ()
+    # command-line argument analysis
+    args = parser.parse_args ()
 
-# input parameters
-a = args.n1
-b = args.n2
+    # input parameters
+    a = args.n1
+    b = args.n2
 
-# calculation
-c = a + b
+    # calculation
+    c = a + b
 
-# printing result
-print (f'{a} + {b} = {c}')
+    # printing result
+    print (f'{a} + {b} = {c}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
