@@ -1,40 +1,46 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:01:24 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 10:45:31 (UT+08:00) daisuke>
 #
 
 # importing argparse module
 import argparse
 
-# list of available operators
-list_operators = ['+', '-', 'x', '/']
+# main function
+def main ():
+    # list of available operators
+    list_operators = ['+', '-', 'x', '/']
 
-# making a parser object for command-line arguments analysis
-parser = argparse.ArgumentParser (description='arithmetic calculations')
+    # making a parser object for command-line arguments analysis
+    parser = argparse.ArgumentParser (description='arithmetic calculations')
 
-# adding arguments
-parser.add_argument ('number1', type=float, help='number1')
-parser.add_argument ('operator', choices=list_operators, help='operator')
-parser.add_argument ('number2', type=float, help='number2')
+    # adding arguments
+    parser.add_argument ('number1', type=float, help='number1')
+    parser.add_argument ('operator', choices=list_operators, help='operator')
+    parser.add_argument ('number2', type=float, help='number2')
 
-# command-line argument analysis
-args = parser.parse_args ()
+    # command-line argument analysis
+    args = parser.parse_args ()
 
-# input parameters
-n1 = args.number1
-n2 = args.number2
-op = args.operator
+    # input parameters
+    n1 = args.number1
+    n2 = args.number2
+    op = args.operator
 
-# calculation
-if (op == '+'):
-    n3 = n1 + n2
-elif (op == '-'):
-    n3 = n1 - n2
-elif (op == 'x'):
-    n3 = n1 * n2
-elif (op == '/'):
-    n3 = n1 / n2
+    # calculation
+    if (op == '+'):
+        n3 = n1 + n2
+    elif (op == '-'):
+        n3 = n1 - n2
+    elif (op == 'x'):
+        n3 = n1 * n2
+    elif (op == '/'):
+        n3 = n1 / n2
 
-# printing result
-print (f'{n1} {op} {n2} = {n3}')
+    # printing result
+    print (f'{n1} {op} {n2} = {n3}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
