@@ -1,7 +1,7 @@
 # Astroinformatics
 
 ```
-Time-stamp: <2026/09/01 09:46:17 (UT+08:00) daisuke>
+Time-stamp: <2026/09/01 13:09:34 (UT+08:00) daisuke>
 ```
 
 This is a repository for the course "Astroinformatics" (course ID: AS6095) offered at the Institute of Astronomy, National Central University from September 2026 to December 2026.
@@ -55,6 +55,8 @@ This is a repository for the course "Astroinformatics" (course ID: AS6095) offer
 ## Jupyter Notebook files
 
 - Session s00a
-  - https://colab.research.google.com/drive/1R-FL1vTBzaUDW58dC-w5MFVOEf7Yi_hp?usp=sharing
+  - https://colab.research.google.com/drive/1rArD2rEX-9SGCOwjrhFp8ZLqU00hzVvQ?usp=sharing
 - Session s00b
-  - https://colab.research.google.com/drive/1jlsneBsfy3IT5YnQwE8auBtmyqZfaRQX?usp=sharing
+  - https://colab.research.google.com/drive/1etve-jmIoEZyUvXwgOPF2CVGx4apZRmo?usp=sharing
+- Session s00c
+  - 
