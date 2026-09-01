@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/02/28 16:10:45 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 11:11:40 (UT+08:00) daisuke>
 #
 
 # importing statistics module
@@ -10,41 +10,47 @@ import statistics
 # importing random module
 import random
 
-# number of data in dataset2
-ndata = 1000
+# main function
+def main ():
+    # number of data in dataset2
+    ndata = 1000
 
-# making an empty list for a synthetic dataset
-dataset2 = []
+    # making an empty list for a synthetic dataset
+    dataset2 = []
 
-# distribution parameters
-a = 100.0
-b = 200.0
+    # distribution parameters
+    a = 100.0
+    b = 200.0
 
-# generation of a synthetic dataset using random number generator
-for i in range (ndata):
-    # generating a random number
-    r = random.uniform (a, b)
-    # appending generated random number to list
-    dataset2.append (r)
+    # generation of a synthetic dataset using random number generator
+    for i in range (ndata):
+        # generating a random number
+        r = random.uniform (a, b)
+        # appending generated random number to list
+        dataset2.append (r)
 
-# printing generated dataset
-print (f'dataset2:')
-for i in range (ndata):
-    if ( (i > 4) and (i < ndata - 1) ):
-        continue
-    elif (i == ndata - 1):
-        print (f'  ...')
-    print (f'  {dataset2[i]}')
+    # printing generated dataset
+    print (f'dataset2:')
+    for i in range (ndata):
+        if ( (i > 4) and (i < ndata - 1) ):
+            continue
+        elif (i == ndata - 1):
+            print (f'  ...')
+        print (f'  {dataset2[i]}')
 
-# number of data in dataset2
-print (f'number of data in dataset2 = {len (dataset2)}')
-        
-# calculation of mean, median, and standard deviation
-mean   = statistics.fmean (dataset2)
-median = statistics.median (dataset2)
-stddev = statistics.stdev (dataset2)
+    # number of data in dataset2
+    print (f'number of data in dataset2 = {len (dataset2)}')
 
-# printing mean, median, and standard deviation
-print (f'mean of dataset2           = {mean:7.3f}')
-print (f'median of dataset2         = {median:7.3f}')
-print (f'stddev of dataset2         = {stddev:7.3f}')
+    # calculation of mean, median, and standard deviation
+    mean   = statistics.fmean (dataset2)
+    median = statistics.median (dataset2)
+    stddev = statistics.stdev (dataset2)
+
+    # printing mean, median, and standard deviation
+    print (f'mean of dataset2           = {mean:7.3f}')
+    print (f'median of dataset2         = {median:7.3f}')
+    print (f'stddev of dataset2         = {stddev:7.3f}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
