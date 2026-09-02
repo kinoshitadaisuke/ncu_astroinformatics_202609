@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/04 16:21:10 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 14:50:46 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
-# making a Numpy array (ndarray) of 5x5 shape
-# with all the elements initialised by one.
-array_o = numpy.ones ( (5, 5) )
+# main function
+def main ():
+    # making a Numpy array (ndarray) of 5x5 shape
+    # with all the elements initialised by one.
+    array_o = numpy.ones ( (5, 5) )
 
-# printing Numpy array
-print (f'array_o:\n{array_o}')
+    # printing Numpy array
+    print (f'array_o:\n{array_o}')
 
-# printing information
-print (f'information:')
-print (f'  ndim     = {array_o.ndim}')
-print (f'  size     = {array_o.size}')
-print (f'  shape    = {array_o.shape}')
-print (f'  dtype    = {array_o.dtype}')
-print (f'  itemsize = {array_o.itemsize} byte')
+    # printing information
+    print (f'information:')
+    print (f'  ndim     = {array_o.ndim}')
+    print (f'  size     = {array_o.size}')
+    print (f'  shape    = {array_o.shape}')
+    print (f'  dtype    = {array_o.dtype}')
+    print (f'  itemsize = {array_o.itemsize} byte')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
