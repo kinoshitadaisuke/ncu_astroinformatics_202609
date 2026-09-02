@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/04 16:20:55 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 14:50:12 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
-# making a 3-dim Numpy array (ndarray) with elements all equal to zeros
-array_m = numpy.zeros ( (3, 3, 3) )
+# main function
+def main ():
+    # making a 3-dim Numpy array (ndarray) with elements all equal to zeros
+    array_m = numpy.zeros ( (3, 3, 3) )
 
-# printing Numpy array
-print (f'array_m:\n{array_m}')
+    # printing Numpy array
+    print (f'array_m:\n{array_m}')
 
-# printing information
-print (f'information:')
-print (f'  ndim     = {array_m.ndim}')
-print (f'  size     = {array_m.size}')
-print (f'  shape    = {array_m.shape}')
-print (f'  dtype    = {array_m.dtype}')
-print (f'  itemsize = {array_m.itemsize} byte')
+    # printing information
+    print (f'information:')
+    print (f'  ndim     = {array_m.ndim}')
+    print (f'  size     = {array_m.size}')
+    print (f'  shape    = {array_m.shape}')
+    print (f'  dtype    = {array_m.dtype}')
+    print (f'  itemsize = {array_m.itemsize} byte')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
