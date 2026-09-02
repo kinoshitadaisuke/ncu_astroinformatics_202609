@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/02 15:03:02 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/02 16:57:51 (UT+08:00) daisuke>
 #
 
 # importing math module
