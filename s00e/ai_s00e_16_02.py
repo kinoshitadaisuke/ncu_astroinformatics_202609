@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 13:35:55 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/02 15:02:54 (UT+08:00) daisuke>
 #
 
 # importing PIL module
@@ -14,33 +14,39 @@ import numpy
 import matplotlib.backends.backend_agg
 import matplotlib.figure
 
-# JPEG file
-file_jpeg = 'campus_map.jpg'
+# main function
+def main ():
+    # JPEG file
+    file_jpeg = 'campus_map.jpg'
 
-# output file
-file_output = 'appy_s04_16_02.png'
+    # output file
+    file_output = 'ai_s00e_16_02.png'
 
-# resolution of output file in DPI
-resolution_dpi = 225.0
+    # resolution of output file in DPI
+    resolution_dpi = 225.0
 
-# opening and reading an image from a file
-image = PIL.Image.open (file_jpeg)
+    # opening and reading an image from a file
+    image = PIL.Image.open (file_jpeg)
 
-# converting PIL Image object into Numpy array
-array_image = numpy.asarray (image)
+    # converting PIL Image object into Numpy array
+    array_image = numpy.asarray (image)
 
-# making a fig object
-fig = matplotlib.figure.Figure ()
+    # making a fig object
+    fig = matplotlib.figure.Figure ()
 
-# making a canvas object
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    # making a canvas object
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 
-# making an axes object
-ax = fig.add_subplot (111)
+    # making an axes object
+    ax = fig.add_subplot (111)
 
-# plotting red-channel of image
-im = ax.imshow (array_image[:,:,0], cmap='gray')
-fig.colorbar (im)
+    # plotting red-channel of image
+    im = ax.imshow (array_image[:,:,0], cmap='gray')
+    fig.colorbar (im)
 
-# saving the figure to a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # saving the figure to a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
