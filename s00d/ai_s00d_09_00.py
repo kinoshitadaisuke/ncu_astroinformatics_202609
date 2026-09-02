@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/04 16:27:05 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/02 09:28:56 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
-# random number generator
-rng = numpy.random.default_rng ()
+# main function
+def main ():
+    # random number generator
+    rng = numpy.random.default_rng ()
 
-# generating a random number of uniform distribution between 0 and 1
-array_x = rng.random ()
+    # generating a random number of uniform distribution between 0 and 1
+    array_x = rng.random ()
 
-# printing generated random numbers
-print (f'{array_x}')
+    # printing generated random numbers
+    print (f'{array_x}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
