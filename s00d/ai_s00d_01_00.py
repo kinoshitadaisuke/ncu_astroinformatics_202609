@@ -1,40 +1,46 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/04 16:17:35 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 14:42:08 (UT+08:00) daisuke>
 #
 
 # importing numpy
 import numpy
 
-# making a Numpy array (ndarray)
-array_b = numpy.array ([10, 20, 30, 40, 50])
+# main function
+def main ():
+    # making a Numpy array (ndarray)
+    array_b = numpy.array ([10, 20, 30, 40, 50])
 
-# type of "array_b"
-type_array_b = type (array_b)
+    # type of "array_b"
+    type_array_b = type (array_b)
 
-# dimension of "array_b"
-ndim_array_b = array_b.ndim
+    # dimension of "array_b"
+    ndim_array_b = array_b.ndim
 
-# size of "array_b"
-size_array_b = array_b.size
+    # size of "array_b"
+    size_array_b = array_b.size
 
-# shape of "array_b"
-shape_array_b = array_b.shape
+    # shape of "array_b"
+    shape_array_b = array_b.shape
 
-# data type of elements in "array_b"
-dtype_array_b = array_b.dtype
+    # data type of elements in "array_b"
+    dtype_array_b = array_b.dtype
 
-# size of one element in "array_b"
-itemsize_array_b = array_b.itemsize
+    # size of one element in "array_b"
+    itemsize_array_b = array_b.itemsize
 
-# printing information
-print (f'array_b:')
-print (f'  values = {array_b}')
-print (f'  type   = {type_array_b}')
-print (f'information of "array_b":')
-print (f'  ndim     = {ndim_array_b}')
-print (f'  size     = {size_array_b}')
-print (f'  shape    = {shape_array_b}')
-print (f'  dtype    = {dtype_array_b}')
-print (f'  itemsize = {itemsize_array_b} byte')
+    # printing information
+    print (f'array_b:')
+    print (f'  values = {array_b}')
+    print (f'  type   = {type_array_b}')
+    print (f'information of "array_b":')
+    print (f'  ndim     = {ndim_array_b}')
+    print (f'  size     = {size_array_b}')
+    print (f'  shape    = {shape_array_b}')
+    print (f'  dtype    = {dtype_array_b}')
+    print (f'  itemsize = {itemsize_array_b} byte')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
