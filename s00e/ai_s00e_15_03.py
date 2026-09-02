@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/13 08:34:12 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/02 15:02:23 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -15,51 +15,57 @@ import astropy.wcs
 import matplotlib.backends.backend_agg
 import matplotlib.figure
 
-# input FITS file name
-file_fits = 'hltau_alma.fits'
+# main function
+def main ():
+    # input FITS file name
+    file_fits = 'hltau_alma.fits'
 
-# output PNG file name
-file_output = 'appy_s04_15_03.png'
+    # output PNG file name
+    file_output = 'ai_s00e_15_03.png'
 
-# opening FITS file
-with astropy.io.fits.open (file_fits) as hdu_list:
-    # printing basic information of FITS file
-    print (hdu_list.info ())
-    # reading FITS header, WCS information, and image data
-    image  = hdu_list[0].data[0][0]
-    # printing image data
-    print (f'shape of image data')
-    print (f'  ndim  = {image.ndim}')
-    print (f'  shape = {image.shape}')
-    print (f'image data:')
-    print (image)
+    # opening FITS file
+    with astropy.io.fits.open (file_fits) as hdu_list:
+        # printing basic information of FITS file
+        print (hdu_list.info ())
+        # reading FITS header, WCS information, and image data
+        image  = hdu_list[0].data[0][0]
+        # printing image data
+        print (f'shape of image data')
+        print (f'  ndim  = {image.ndim}')
+        print (f'  shape = {image.shape}')
+        print (f'image data:')
+        print (image)
 
-# cropping image
-image_cropped = image[350:430,360:440]
+    # cropping image
+    image_cropped = image[350:430,360:440]
 
-# printing cropped image
-print (f'shape of image_cropped')
-print (f'  ndim  = {image_cropped.ndim}')
-print (f'  shape = {image_cropped.shape}')
-print (f'image_cropped:')
-print (image_cropped)
-   
-# making a fig object
-fig = matplotlib.figure.Figure ()
+    # printing cropped image
+    print (f'shape of image_cropped')
+    print (f'  ndim  = {image_cropped.ndim}')
+    print (f'  shape = {image_cropped.shape}')
+    print (f'image_cropped:')
+    print (image_cropped)
 
-# making a canvas object
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    # making a fig object
+    fig = matplotlib.figure.Figure ()
 
-# making an axes object
-ax = fig.add_subplot (111)
+    # making a canvas object
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 
-# making a contour map
-ax.contour (image_cropped)
+    # making an axes object
+    ax = fig.add_subplot (111)
 
-# axes
-ax.set_xlabel ('X')
-ax.set_ylabel ('Y')
-ax.set_title ('HL Tau observed by ALMA')
+    # making a contour map
+    ax.contour (image_cropped)
 
-# saving a plot as a file
-fig.savefig (file_output, dpi=150)
+    # axes
+    ax.set_xlabel ('X')
+    ax.set_ylabel ('Y')
+    ax.set_title ('HL Tau observed by ALMA')
+
+    # saving a plot as a file
+    fig.savefig (file_output, dpi=150)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
