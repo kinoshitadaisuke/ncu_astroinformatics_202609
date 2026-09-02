@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/10 20:19:56 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/02 14:47:49 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -23,98 +23,104 @@ import numpy
 import matplotlib.backends.backend_agg
 import matplotlib.figure
 
-# constructing a parser object
-descr  = 'plotting time-series data'
-parser = argparse.ArgumentParser (description=descr)
+# main function
+def main ():
+    # constructing a parser object
+    descr  = 'plotting time-series data'
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding arguments
-parser.add_argument ('-o', '--output', default='output.png', \
-                     help='output file name (default: output.png)')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution of plot in DPI (default: 225.0)')
-parser.add_argument ('file', help='input data file name')
+    # adding arguments
+    parser.add_argument ('-o', '--output', default='output.png', \
+                         help='output file name (default: output.png)')
+    parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
+                         help='resolution of plot in DPI (default: 225.0)')
+    parser.add_argument ('file', help='input data file name')
 
-# parsing arguments
-args = parser.parse_args ()
+    # parsing arguments
+    args = parser.parse_args ()
 
-# parameters
-file_input     = args.file
-file_output    = args.output
-resolution_dpi = args.resolution
+    # parameters
+    file_input     = args.file
+    file_output    = args.output
+    resolution_dpi = args.resolution
 
-# making a pathlib object for output file
-path_output = pathlib.Path (file_output)
+    # making a pathlib object for output file
+    path_output = pathlib.Path (file_output)
 
-# check of existence of output file
-if (path_output.exists ()):
-    # printing a message
-    print (f'ERROR: output file "{file_output}" exists!')
-    # stopping the script
-    sys.exit (0)
+    # check of existence of output file
+    if (path_output.exists ()):
+        # printing a message
+        print (f'ERROR: output file "{file_output}" exists!')
+        # stopping the script
+        sys.exit (0)
 
-# check of extension of output file
-if not ( (path_output.suffix == '.eps') \
-         or (path_output.suffix == '.pdf') \
-         or (path_output.suffix == '.png') \
-         or (path_output.suffix == '.ps') ):
-    # printing a message
-    print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
-    # stopping the script
-    sys.exit (0)
+    # check of extension of output file
+    if not ( (path_output.suffix == '.eps') \
+             or (path_output.suffix == '.pdf') \
+             or (path_output.suffix == '.png') \
+             or (path_output.suffix == '.ps') ):
+        # printing a message
+        print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
+        # stopping the script
+        sys.exit (0)
 
-# making empty Numpy arrays
-data_date      = numpy.array ([], dtype='datetime64[ms]')
-data_mag       = numpy.array ([], dtype='float64')
-data_mag_error = numpy.array ([], dtype='float64')
-    
-# opening input file
-with open (file_input, 'r') as fh_in:
-    # reading data line-by-line
-    for line in fh_in:
-        # splitting data
-        (date_str, mag_str, error_str, band, observer) = line.split ()
-        # conversion from string to datetime, and then to datetime64
-        date1 = datetime.datetime.strptime (date_str[:-4], '%Y-%m-%d')
-        day   = float (date_str[-3:]) / 1000
-        date2 = datetime.timedelta (days=day)
-        date_datetime   = date1 + date2
-        date_datetime64 = numpy.datetime64 (date_datetime, 'ms')
-        # conversion from string to float
-        mag       = float (mag_str)
-        mag_error = float (error_str)
-        # appending data to Numpy arrays
-        data_date      = numpy.append (data_date, date_datetime64)
-        data_mag       = numpy.append (data_mag, mag)
-        data_mag_error = numpy.append (data_mag_error, mag_error)
+    # making empty Numpy arrays
+    data_date      = numpy.array ([], dtype='datetime64[ms]')
+    data_mag       = numpy.array ([], dtype='float64')
+    data_mag_error = numpy.array ([], dtype='float64')
 
-# making a fig object
-fig = matplotlib.figure.Figure ()
+    # opening input file
+    with open (file_input, 'r') as fh_in:
+        # reading data line-by-line
+        for line in fh_in:
+            # splitting data
+            (date_str, mag_str, error_str, band, observer) = line.split ()
+            # conversion from string to datetime, and then to datetime64
+            date1 = datetime.datetime.strptime (date_str[:-4], '%Y-%m-%d')
+            day   = float (date_str[-3:]) / 1000
+            date2 = datetime.timedelta (days=day)
+            date_datetime   = date1 + date2
+            date_datetime64 = numpy.datetime64 (date_datetime, 'ms')
+            # conversion from string to float
+            mag       = float (mag_str)
+            mag_error = float (error_str)
+            # appending data to Numpy arrays
+            data_date      = numpy.append (data_date, date_datetime64)
+            data_mag       = numpy.append (data_mag, mag)
+            data_mag_error = numpy.append (data_mag_error, mag_error)
 
-# making a canvas object
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    # making a fig object
+    fig = matplotlib.figure.Figure ()
 
-# making an axes object
-ax = fig.add_subplot (111)
+    # making a canvas object
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 
-# labels
-ax.set_xlabel ('Date [YYYY-MM-DD]')
-ax.set_ylabel ('V-band Magnitude [mag]')
+    # making an axes object
+    ax = fig.add_subplot (111)
 
-# axis settings
-ax.set_xlim (numpy.datetime64 ('2019-12-20'), numpy.datetime64 ('2020-04-01'))
-ax.set_ylim (+1.9, +0.9)
+    # labels
+    ax.set_xlabel ('Date [YYYY-MM-DD]')
+    ax.set_ylabel ('V-band Magnitude [mag]')
 
-# plotting data
-ax.errorbar (data_date, data_mag, yerr=data_mag_error, \
-             linestyle='None', marker='o', markersize=5.0, color='red', \
-             ecolor='black', elinewidth=2.0, capsize=5.0, \
-             label='Apparent magnitude of Betelgeuse')
+    # axis settings
+    ax.set_xlim (numpy.datetime64 ('2019-12-20'), numpy.datetime64 ('2020-04-01'))
+    ax.set_ylim (+1.9, +0.9)
 
-# legend
-ax.legend (loc='upper right')
+    # plotting data
+    ax.errorbar (data_date, data_mag, yerr=data_mag_error, \
+                 linestyle='None', marker='o', markersize=5.0, color='red', \
+                 ecolor='black', elinewidth=2.0, capsize=5.0, \
+                 label='Apparent magnitude of Betelgeuse')
 
-# formatting labels
-fig.autofmt_xdate()
+    # legend
+    ax.legend (loc='upper right')
 
-# saving the figure to a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # formatting labels
+    fig.autofmt_xdate()
+
+    # saving the figure to a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
