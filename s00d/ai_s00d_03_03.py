@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/04 16:21:03 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/01 14:50:30 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
-# making a Numpy array (ndarray) with 100 elements all equal to ones.
-array_n = numpy.ones ( (100,) )
+# main function
+def main ():
+    # making a Numpy array (ndarray) with 100 elements all equal to ones.
+    array_n = numpy.ones ( (100,) )
 
-# printing Numpy array
-print (f'array_n:\n{array_n}')
+    # printing Numpy array
+    print (f'array_n:\n{array_n}')
 
-# printing information
-print (f'information:')
-print (f'  ndim     = {array_n.ndim}')
-print (f'  size     = {array_n.size}')
-print (f'  shape    = {array_n.shape}')
-print (f'  dtype    = {array_n.dtype}')
-print (f'  itemsize = {array_n.itemsize} byte')
+    # printing information
+    print (f'information:')
+    print (f'  ndim     = {array_n.ndim}')
+    print (f'  size     = {array_n.size}')
+    print (f'  shape    = {array_n.shape}')
+    print (f'  dtype    = {array_n.dtype}')
+    print (f'  itemsize = {array_n.itemsize} byte')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
