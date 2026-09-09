@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:20:40 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:27:31 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -18,12 +18,18 @@ def curve (x):
     # returning a value
     return (y)
 
-# range of integration
-x0 = 0.0
-x1 = numpy.pi
+# main function
+def main ():
+    # range of integration
+    x0 = 0.0
+    x1 = numpy.pi
 
-# numerical integration
-result = scipy.integrate.quad (curve, x0, x1)
+    # numerical integration
+    result = scipy.integrate.quad (curve, x0, x1)
 
-# printing result of numerical integration
-print (f'integ. of sin (x) from 0.0 to pi = {result[0]} +/- {result[1]}')
+    # printing result of numerical integration
+    print (f'integ. of sin (x) from 0.0 to pi = {result[0]} +/- {result[1]}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
