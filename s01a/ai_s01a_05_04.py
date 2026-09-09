@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:21:10 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:29:15 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -18,16 +18,22 @@ def curve (x):
     # returning a value
     return (y)
 
-# data points
-data_x = numpy.linspace (0.0, 2.0, 2001)
-data_y = curve (data_x)
+# main function
+def main ():
+    # data points
+    data_x = numpy.linspace (0.0, 2.0, 2001)
+    data_y = curve (data_x)
 
-# printing data_x and data_y
-print (f'data_x = {data_x}')
-print (f'data_y = {data_y}')
+    # printing data_x and data_y
+    print (f'data_x = {data_x}')
+    print (f'data_y = {data_y}')
 
-# numerical integration of given data points by trapezoidal rule
-I = scipy.integrate.trapezoid (data_y, x=data_x)
+    # numerical integration of given data points by trapezoidal rule
+    I = scipy.integrate.trapezoid (data_y, x=data_x)
 
-# printing result of numerical integration
-print (f'I = {I}')
+    # printing result of numerical integration
+    print (f'I = {I}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
