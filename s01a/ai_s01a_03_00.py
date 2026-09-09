@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:18:01 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:22:57 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -11,14 +11,20 @@ import numpy
 import scipy
 import scipy.linalg
 
-# matrix A
-A = numpy.array ( [ [4.0, 11.0], [2.0, 5.0] ] )
+# main function
+def main ():
+    # matrix A
+    A = numpy.array ( [ [4.0, 11.0], [2.0, 5.0] ] )
 
-# printing matrix A
-print (f'matrix A:\n{A}')
+    # printing matrix A
+    print (f'matrix A:\n{A}')
 
-# determinant of matrix A
-A_det = scipy.linalg.det (A)
+    # determinant of matrix A
+    A_det = scipy.linalg.det (A)
 
-# printing the determinant of matrix A
-print (f'determinant of matrix A = {A_det}')
+    # printing the determinant of matrix A
+    print (f'determinant of matrix A = {A_det}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
