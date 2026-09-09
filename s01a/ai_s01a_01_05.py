@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:16:24 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:19:23 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -10,29 +10,35 @@ import argparse
 # importing scipy module
 import scipy.stats
 
-# constructing a parser object
-descr  = 'generating a set of random numbers of Gaussian distribution'
-parser = argparse.ArgumentParser (description=descr)
+# main function
+def main ():
+    # constructing a parser object
+    descr  = 'generating a set of random numbers of Gaussian distribution'
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding arguments
-parser.add_argument ('-n', '--number', type=int, default=1, \
-                     help='number of random numbers (default: 1)')
-parser.add_argument ('-m', '--mean', type=float, default=0.0, \
-                     help='mean value of distribution (default: 0.0)')
-parser.add_argument ('-s', '--stddev', type=float, default=1.0, \
-                     help='standard deviation of distribution (default: 1.0)')
+    # adding arguments
+    parser.add_argument ('-n', '--number', type=int, default=1, \
+                         help='number of random numbers (default: 1)')
+    parser.add_argument ('-m', '--mean', type=float, default=0.0, \
+                         help='mean value of distribution (default: 0.0)')
+    parser.add_argument ('-s', '--stddev', type=float, default=1.0, \
+                         help='standard deviation of distribution (default: 1.0)')
 
-# parsing arguments
-args = parser.parse_args ()
+    # parsing arguments
+    args = parser.parse_args ()
 
-# input parameters
-n      = args.number
-mean   = args.mean
-stddev = args.stddev
+    # input parameters
+    n      = args.number
+    mean   = args.mean
+    stddev = args.stddev
 
-# generating a set of random numbers of Gaussian distribution
-rg = scipy.stats.norm.rvs (loc=mean, scale=stddev, size=n)
+    # generating a set of random numbers of Gaussian distribution
+    rg = scipy.stats.norm.rvs (loc=mean, scale=stddev, size=n)
 
-# printing generated random numbers
-print (f'generated random numbers:')
-print (f'{rg}')
+    # printing generated random numbers
+    print (f'generated random numbers:')
+    print (f'{rg}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
