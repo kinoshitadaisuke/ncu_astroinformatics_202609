@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:22:55 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:53:34 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -23,64 +23,6 @@ import scipy.optimize
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# constructing a parser object
-descr  = 'Finding minimum of multiple variable function'
-parser = argparse.ArgumentParser (description=descr)
-
-# adding arguments
-parser.add_argument ('-a', type=float, default=1.0, \
-                     help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
-parser.add_argument ('-b', type=float, default=1.0, \
-                     help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
-parser.add_argument ('-c', type=float, default=1.0, \
-                     help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
-parser.add_argument ('-d', type=float, default=1.0, \
-                     help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
-parser.add_argument ('-min', type=float, default=0.0, \
-                     help='minimum value of x for plotting (default: 0)')
-parser.add_argument ('-max', type=float, default=1.0, \
-                     help='maximum value of x for plotting (default: 1)')
-parser.add_argument ('-n', type=int, default=1000, \
-                     help='number of data points to produce (default: 1000)')
-parser.add_argument ('-o', '--output', default='output.png', \
-                     help='output file name (default: output.png)')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution of plot in DPI (default: 225.0)')
-
-# parsing arguments
-args = parser.parse_args ()
-
-# input parameters
-a              = args.a
-b              = args.b
-c              = args.c
-d              = args.d
-range_min      = args.min
-range_max      = args.max
-n              = args.n
-file_output    = args.output
-resolution_dpi = args.resolution
-
-# making a pathlib object for output file
-path_output = pathlib.Path (file_output)
-
-# check of existence of output file
-if (path_output.exists ()):
-    # printing a message
-    print (f'ERROR: output file "{file_output}" exists!')
-    # stopping the script
-    sys.exit (0)
-
-# check of extension of output file
-if not ( (path_output.suffix == '.eps') \
-         or (path_output.suffix == '.pdf') \
-         or (path_output.suffix == '.png') \
-         or (path_output.suffix == '.ps') ):
-    # printing a message
-    print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
-    # stopping the script
-    sys.exit (0)
-
 # function of a surface
 def surface (x, a, b, c, d):
     # curve
@@ -88,52 +30,116 @@ def surface (x, a, b, c, d):
     # returning y-value
     return z
 
-# finding minimum
-minimum = scipy.optimize.minimize (surface, x0=(0.0, 0.0), \
-                                   args=(a, b, c, d), method='Nelder-Mead')
+# main function
+def main ():
+    # constructing a parser object
+    descr  = 'Finding minimum of multiple variable function'
+    parser = argparse.ArgumentParser (description=descr)
 
-# minimum value
-min_x = minimum.x[0]
-min_y = minimum.x[1]
-min_z = minimum.fun
+    # adding arguments
+    parser.add_argument ('-a', type=float, default=1.0, \
+                         help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
+    parser.add_argument ('-b', type=float, default=1.0, \
+                         help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
+    parser.add_argument ('-c', type=float, default=1.0, \
+                         help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
+    parser.add_argument ('-d', type=float, default=1.0, \
+                         help='a of a*exp[-(x-b)^2]*exp[-(x-c)^2]+d (default: 1)')
+    parser.add_argument ('-min', type=float, default=0.0, \
+                         help='minimum value of x for plotting (default: 0)')
+    parser.add_argument ('-max', type=float, default=1.0, \
+                         help='maximum value of x for plotting (default: 1)')
+    parser.add_argument ('-n', type=int, default=1000, \
+                         help='number of data points to produce (default: 1000)')
+    parser.add_argument ('-o', '--output', default='output.png', \
+                         help='output file name (default: output.png)')
+    parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
+                         help='resolution of plot in DPI (default: 225.0)')
 
-# printing minimum value
-print (f'function: f(x,y) = {a} exp [(x-{b})^2] exp [(x-{c})^2] + {d}')
-print (f'minimum:  f(x={min_x}, y={min_y}) = {min_z}')
+    # parsing arguments
+    args = parser.parse_args ()
 
-# data to plot
-data_x           = numpy.linspace (range_min, range_max, n)
-data_y           = numpy.linspace (range_min, range_max, n)
-data_xx, data_yy = numpy.meshgrid (data_x, data_y)
-data_zz          = surface ( (data_xx, data_yy), a, b, c, d )
+    # input parameters
+    a              = args.a
+    b              = args.b
+    c              = args.c
+    d              = args.d
+    range_min      = args.min
+    range_max      = args.max
+    n              = args.n
+    file_output    = args.output
+    resolution_dpi = args.resolution
 
-#
-# making plot using Matplotlib
-#
-    
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111, projection='3d')
+    # making a pathlib object for output file
+    path_output = pathlib.Path (file_output)
 
-# axes
-ax.set_xlabel ('X [arbitrary unit]')
-ax.set_ylabel ('Y [arbitrary unit]')
-ax.set_zlabel ('Z [arbitrary unit]')
-ax.set_xlim (range_min, range_max)
-ax.set_ylim (range_min, range_max)
-ax.set_zlim (None, d * 1.5)
+    # check of existence of output file
+    if (path_output.exists ()):
+        # printing a message
+        print (f'ERROR: output file "{file_output}" exists!')
+        # stopping the script
+        sys.exit (0)
 
-# plotting data
-ax.plot_surface (data_xx, data_yy, data_zz)
+    # check of extension of output file
+    if not ( (path_output.suffix == '.eps') \
+             or (path_output.suffix == '.pdf') \
+             or (path_output.suffix == '.png') \
+             or (path_output.suffix == '.ps') ):
+        # printing a message
+        print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
+        # stopping the script
+        sys.exit (0)
 
-# making a contour
-ax.contour (data_xx, data_yy, data_zz, zdir='z', offset=0.0)
+    # finding minimum
+    minimum = scipy.optimize.minimize (surface, x0=(0.0, 0.0), \
+                                       args=(a, b, c, d), method='Nelder-Mead')
 
-# plotting minimum
-ax.plot3D (min_x, min_y, min_z, \
-           linestyle='None', marker='o', markersize=5.0, color='red', \
-           label='minimum')
+    # minimum value
+    min_x = minimum.x[0]
+    min_y = minimum.x[1]
+    min_z = minimum.fun
 
-# saving file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # printing minimum value
+    print (f'function: f(x,y) = {a} exp [(x-{b})^2] exp [(x-{c})^2] + {d}')
+    print (f'minimum:  f(x={min_x}, y={min_y}) = {min_z}')
+
+    # data to plot
+    data_x           = numpy.linspace (range_min, range_max, n)
+    data_y           = numpy.linspace (range_min, range_max, n)
+    data_xx, data_yy = numpy.meshgrid (data_x, data_y)
+    data_zz          = surface ( (data_xx, data_yy), a, b, c, d )
+
+    #
+    # making plot using Matplotlib
+    #
+
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111, projection='3d')
+
+    # axes
+    ax.set_xlabel ('X [arbitrary unit]')
+    ax.set_ylabel ('Y [arbitrary unit]')
+    ax.set_zlabel ('Z [arbitrary unit]')
+    ax.set_xlim (range_min, range_max)
+    ax.set_ylim (range_min, range_max)
+    ax.set_zlim (None, d * 1.5)
+
+    # plotting data
+    ax.plot_surface (data_xx, data_yy, data_zz)
+
+    # making a contour
+    ax.contour (data_xx, data_yy, data_zz, zdir='z', offset=0.0)
+
+    # plotting minimum
+    ax.plot3D (min_x, min_y, min_z, \
+               linestyle='None', marker='o', markersize=5.0, color='red', \
+               label='minimum')
+
+    # saving file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
