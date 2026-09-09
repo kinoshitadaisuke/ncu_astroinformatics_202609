@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/14 21:24:13 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:39:20 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -20,108 +20,114 @@ import numpy
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# constructing a parser object
-descr  = 'Plotting synthetic data'
-parser = argparse.ArgumentParser (description=descr)
+# main function
+def main ():
+    # constructing a parser object
+    descr  = 'Plotting synthetic data'
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding arguments
-parser.add_argument ('-o', '--output', default='output.png', \
-                     help='output file name (default: output.png)')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution of plot in DPI (default: 225.0)')
-parser.add_argument ('file', default='', help='input data file name')
+    # adding arguments
+    parser.add_argument ('-o', '--output', default='output.png', \
+                         help='output file name (default: output.png)')
+    parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
+                         help='resolution of plot in DPI (default: 225.0)')
+    parser.add_argument ('file', default='', help='input data file name')
 
-# parsing arguments
-args = parser.parse_args ()
+    # parsing arguments
+    args = parser.parse_args ()
 
-# input parameters
-file_input     = args.file
-file_output    = args.output
-resolution_dpi = args.resolution
+    # input parameters
+    file_input     = args.file
+    file_output    = args.output
+    resolution_dpi = args.resolution
 
-# making a pathlib object for input file
-path_input = pathlib.Path (file_input)
+    # making a pathlib object for input file
+    path_input = pathlib.Path (file_input)
 
-# check of existence input file
-if not (path_input.exists ()):
-    # printing a message
-    print (f'ERROR: input file "{file_input}" does not exist')
-    # stopping the script
-    sys.exit (0)
+    # check of existence input file
+    if not (path_input.exists ()):
+        # printing a message
+        print (f'ERROR: input file "{file_input}" does not exist')
+        # stopping the script
+        sys.exit (0)
 
-# making a pathlib object for output file
-path_output = pathlib.Path (file_output)
+    # making a pathlib object for output file
+    path_output = pathlib.Path (file_output)
 
-# check of existence of output file
-if (path_output.exists ()):
-    # printing a message
-    print (f'ERROR: output file "{file_output}" exists!')
-    # stopping the script
-    sys.exit (0)
+    # check of existence of output file
+    if (path_output.exists ()):
+        # printing a message
+        print (f'ERROR: output file "{file_output}" exists!')
+        # stopping the script
+        sys.exit (0)
 
-# check of extension of output file
-if not ( (path_output.suffix == '.eps') \
-         or (path_output.suffix == '.pdf') \
-         or (path_output.suffix == '.png') \
-         or (path_output.suffix == '.ps') ):
-    # printing a message
-    print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
-    # stopping the script
-    sys.exit (0)
+    # check of extension of output file
+    if not ( (path_output.suffix == '.eps') \
+             or (path_output.suffix == '.pdf') \
+             or (path_output.suffix == '.png') \
+             or (path_output.suffix == '.ps') ):
+        # printing a message
+        print (f'ERROR: output file must be either EPS or PDF or PNG or PS file.')
+        # stopping the script
+        sys.exit (0)
 
-# making empty numpy arrays
-data_x = numpy.array ([])
-data_y = numpy.array ([])
+    # making empty numpy arrays
+    data_x = numpy.array ([])
+    data_y = numpy.array ([])
 
-# opening file for reading
-with open (file_input, 'r') as fh:
-    # reading file line-by-line
-    for line in fh:
-        # splitting line into "x" and "y"
-        (x_str, y_str) = line.split ()
-        # converting string into float
-        try:
-            x = float (x_str)
-        except:
-            print (f'cannot convert "{x_str}" into float.')
-            print (f'something is wrong.')
-            print (f'exiting...')
-            sys.exit (1)
-        try:
-            y = float (y_str)
-        except:
-            print (f'cannot convert "{y_str}" into float.')
-            print (f'something is wrong.')
-            print (f'exiting...')
-            sys.exit (1)
-        # appending data into numpy arrays
-        data_x = numpy.append (data_x, x)
-        data_y = numpy.append (data_y, y)
+    # opening file for reading
+    with open (file_input, 'r') as fh:
+        # reading file line-by-line
+        for line in fh:
+            # splitting line into "x" and "y"
+            (x_str, y_str) = line.split ()
+            # converting string into float
+            try:
+                x = float (x_str)
+            except:
+                print (f'cannot convert "{x_str}" into float.')
+                print (f'something is wrong.')
+                print (f'exiting...')
+                sys.exit (1)
+            try:
+                y = float (y_str)
+            except:
+                print (f'cannot convert "{y_str}" into float.')
+                print (f'something is wrong.')
+                print (f'exiting...')
+                sys.exit (1)
+            # appending data into numpy arrays
+            data_x = numpy.append (data_x, x)
+            data_y = numpy.append (data_y, y)
 
-# printing data
-for i in range (len (data_x)):
-    print (f'(x_{i:02d}, y_{i:02d}) = ({data_x[i]:8.3f}, {data_y[i]:8.3f})')
+    # printing data
+    for i in range (len (data_x)):
+        print (f'(x_{i:02d}, y_{i:02d}) = ({data_x[i]:8.3f}, {data_y[i]:8.3f})')
 
-#
-# making plot using Matplotlib
-#
-    
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    #
+    # making plot using Matplotlib
+    #
 
-# axes
-ax.set_xlabel ('X [arbitrary unit]')
-ax.set_ylabel ('Y [arbitrary unit]')
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# plotting data
-ax.plot (data_x, data_y, \
-         linestyle='None', marker='o', markersize=5.0, color='blue', \
-         label='synthetic data for least-squares method')
+    # axes
+    ax.set_xlabel ('X [arbitrary unit]')
+    ax.set_ylabel ('Y [arbitrary unit]')
 
-# legend
-ax.legend ()
+    # plotting data
+    ax.plot (data_x, data_y, \
+             linestyle='None', marker='o', markersize=5.0, color='blue', \
+             label='synthetic data for least-squares method')
 
-# saving file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # legend
+    ax.legend ()
+
+    # saving file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
