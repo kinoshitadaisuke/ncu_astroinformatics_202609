@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/16 21:35:19 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/09 13:50:37 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -15,76 +15,82 @@ import scipy.stats
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# input file name
-file_input = 'solsys.data'
+# main function
+def main ():
+    # input file name
+    file_input = 'solsys.data'
 
-# output file name
-file_output = 'appy_s05_08_15.png'
+    # output file name
+    file_output = 'ai_s01a_08_15.png'
 
-# numpy arrays for storing data
-data_a = numpy.array ([])
-data_p = numpy.array ([])
+    # numpy arrays for storing data
+    data_a = numpy.array ([])
+    data_p = numpy.array ([])
 
-# 1 au in km
-au = 1.49597871 * 10**8
+    # 1 au in km
+    au = 1.49597871 * 10**8
 
-# 1 year in sec
-year = 365.25 * 24 * 3600
+    # 1 year in sec
+    year = 365.25 * 24 * 3600
 
-# opening file for reading
-with open (file_input, 'r') as fh:
-    # reading file line-by-line
-    for line in fh:
-        # skipping line, if line starts with '#'
-        if (line[0] == '#'):
-            continue
-        # splitting line into "x", "y", and "err"
-        (name, a_km_str, period_sec_str) = line.split ()
-        # converting string into float
-        try:
-            a_km = float (a_km_str)
-        except:
-            print (f'cannot convert "{a_km_str}" into float.')
-            sys.exit (1)
-        try:
-            period_sec = float (period_sec_str)
-        except:
-            print (f'cannot convert "{period_sec_str}" into float.')
-            sys.exit (1)
-        # converting unit
-        a_au = a_km / au
-        period_yr = period_sec / year
-        # appending data to numpy arrays
-        data_a = numpy.append (data_a, a_au)
-        data_p = numpy.append (data_p, period_yr)
+    # opening file for reading
+    with open (file_input, 'r') as fh:
+        # reading file line-by-line
+        for line in fh:
+            # skipping line, if line starts with '#'
+            if (line[0] == '#'):
+                continue
+            # splitting line into "x", "y", and "err"
+            (name, a_km_str, period_sec_str) = line.split ()
+            # converting string into float
+            try:
+                a_km = float (a_km_str)
+            except:
+                print (f'cannot convert "{a_km_str}" into float.')
+                sys.exit (1)
+            try:
+                period_sec = float (period_sec_str)
+            except:
+                print (f'cannot convert "{period_sec_str}" into float.')
+                sys.exit (1)
+            # converting unit
+            a_au = a_km / au
+            period_yr = period_sec / year
+            # appending data to numpy arrays
+            data_a = numpy.append (data_a, a_au)
+            data_p = numpy.append (data_p, period_yr)
 
-# printing data
-print (f'data_a:\n{data_a}')
-print (f'data_p:\n{data_p}')
+    # printing data
+    print (f'data_a:\n{data_a}')
+    print (f'data_p:\n{data_p}')
 
-#
-# making plot using Matplotlib
-#
-    
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    #
+    # making plot using Matplotlib
+    #
 
-# axes
-ax.set_xlabel ('Semimajor Axis [au]')
-ax.set_ylabel ('Orbital Period [yr]')
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.grid ()
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# plotting data
-ax.plot (data_a, data_p, \
-         linestyle='None', marker='o', markersize=5.0, color='blue', \
-         label='planets and dwarf planets in solar system')
+    # axes
+    ax.set_xlabel ('Semimajor Axis [au]')
+    ax.set_ylabel ('Orbital Period [yr]')
+    ax.set_xscale ('log')
+    ax.set_yscale ('log')
+    ax.grid ()
 
-# legend
-ax.legend ()
+    # plotting data
+    ax.plot (data_a, data_p, \
+             linestyle='None', marker='o', markersize=5.0, color='blue', \
+             label='planets and dwarf planets in solar system')
 
-# saving file
-fig.savefig (file_output, dpi=100)
+    # legend
+    ax.legend ()
+
+    # saving file
+    fig.savefig (file_output, dpi=100)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
