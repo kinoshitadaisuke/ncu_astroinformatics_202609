@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:57:33 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 14:10:28 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -14,13 +14,6 @@ import scipy.stats
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# a function for straight line
-def line (x, a, b):
-    # line
-    y = a * x + b
-    # returning y
-    return (y)
 
 # main function
 def main ():
@@ -70,6 +63,13 @@ def main ():
     # printing data
     print (f'data_a:\n{data_a}')
     print (f'data_p:\n{data_p}')
+
+    # a function for straight line
+    def line (x, a, b):
+        # line
+        y = a * x + b
+        # returning y
+        return (y)
 
     # initial guess of coefficients
     param0 = [1.0, 1.0]
