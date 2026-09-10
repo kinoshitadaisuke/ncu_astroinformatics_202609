@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/19 10:38:52 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 16:11:37 (UT+08:00) daisuke>
 #
 
 # importing urllib module
@@ -10,36 +10,42 @@ import urllib.request
 # importing ssl module
 import ssl
 
-# allow insecure downloading
-ssl._create_default_https_context = ssl._create_unverified_context
+# main function
+def main ():
+    # allow insecure downloading
+    ssl._create_default_https_context = ssl._create_unverified_context
 
-# URL of data file
-url_data = 'https://cdsarc.cds.unistra.fr/ftp/I/239/hip_main.dat'
+    # URL of data file
+    url_data = 'https://cdsarc.cds.unistra.fr/ftp/I/239/hip_main.dat'
 
-# output file name
-file_output = 'hip.cat'
+    # output file name
+    file_output = 'hip.cat'
 
-# printing status
-print (f'Now, fetching {url_data}...')
+    # printing status
+    print (f'Now, fetching {url_data}...')
 
-# opening URL
-with urllib.request.urlopen (url_data) as fh_read:
-    # reading data
-    data_byte = fh_read.read ()
+    # opening URL
+    with urllib.request.urlopen (url_data) as fh_read:
+        # reading data
+        data_byte = fh_read.read ()
 
-# printing status
-print (f'Finished fetching {url_data}!')
+    # printing status
+    print (f'Finished fetching {url_data}!')
 
-# converting raw byte data into string
-data_str = data_byte.decode ('utf-8')
+    # converting raw byte data into string
+    data_str = data_byte.decode ('utf-8')
 
-# printing status
-print (f'Now, writing data into file "{file_output}"...')
+    # printing status
+    print (f'Now, writing data into file "{file_output}"...')
 
-# opening file for writing
-with open (file_output, 'w') as fh_write:
-    # writing data
-    fh_write.write (data_str)
+    # opening file for writing
+    with open (file_output, 'w') as fh_write:
+        # writing data
+        fh_write.write (data_str)
 
-# printing status
-print (f'Finished writing data into file "{file_output}"!')
+    # printing status
+    print (f'Finished writing data into file "{file_output}"!')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
