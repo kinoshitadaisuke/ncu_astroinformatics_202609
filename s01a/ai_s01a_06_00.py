@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:51:43 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 13:22:37 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -23,13 +23,6 @@ import scipy.integrate
 # importing matplotlib module
 import matplotlib.backends.backend_agg
 import matplotlib.figure
-
-# equation to solve
-def dydx (t, y):
-    # dy/dx = -ky
-    dy = -k * y
-    # returning value
-    return dy
 
 # main function
 def main ():
@@ -75,6 +68,13 @@ def main ():
 
     # initial condition
     y_0 = 100.0
+
+    # equation to solve
+    def dydx (t, y):
+        # dy/dx = -ky
+        dy = -k * y
+        # returning value
+        return dy
 
     # x values
     output_x = numpy.linspace (0.0, 50.0, 5001)
