@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:46:09 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 14:17:47 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # importing scipy module
-import scipy
+import scipy.odr
 
 # importing matplotlib module
 import matplotlib.backends.backend_agg
