@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:57:13 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 13:58:25 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -18,13 +18,6 @@ import numpy
 
 # importing scipy module
 import scipy.stats
-
-# function for a line
-def curve (x):
-    # line
-    y = a * (x - b)**2 + c
-    # returning y
-    return y
 
 # main function
 def main ():
@@ -75,6 +68,13 @@ def main ():
 
     # generating random numbers
     err = scipy.stats.norm.rvs (loc=0.0, scale=stddev, size=n)
+
+    # function for a line
+    def curve (x):
+        # line
+        y = a * (x - b)**2 + c
+        # returning y
+        return y
 
     # synthetic data for least-squares method
     data_x   = numpy.linspace (range_min, range_max, n)
