@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:54:23 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 13:44:01 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -26,20 +26,6 @@ import scipy.stats
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# a function for straight line
-def line (x, a, b):
-    # line
-    y = a * x + b
-    # returning y
-    return y
-
-# a function to calculate residuals
-def residual (param, x, y):
-    # calculation of residual
-    residue = param[0] * x + param[1] - y
-    # returning residual
-    return residue
 
 # main function
 def main ():
@@ -134,6 +120,13 @@ def main ():
     for i in range (len (data_x)):
         print (f'(x_{i:03d}, y_{i:03d}) = ({data_x[i]:15.6f}, {data_y[i]:15.6f})')
 
+    # a function to calculate residuals
+    def residual (param, x, y):
+        # calculation of residual
+        residue = param[0] * x + param[1] - y
+        # returning residual
+        return residue
+
     # initial guess of coefficients
     param0 = [a, b]
 
@@ -175,6 +168,13 @@ def main ():
     # range of data
     x_min = scipy.stats.tmin (data_x)
     x_max = scipy.stats.tmax (data_x)
+
+    # a function for straight line
+    def line (x, a, b):
+        # line
+        y = a * x + b
+        # returning y
+        return y
 
     # fitted line
     fitted_x = numpy.linspace (x_min, x_max, 1000)
