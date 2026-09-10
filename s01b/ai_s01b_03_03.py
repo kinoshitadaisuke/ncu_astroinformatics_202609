@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/19 10:39:21 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 16:12:32 (UT+08:00) daisuke>
 #
 
 # importing sqlite module
@@ -10,22 +10,28 @@ import sqlite3
 # importing contextlib module
 import contextlib
 
-# database file name
-file_db = 'hip.db'
+# main function
+def main ():
+    # database file name
+    file_db = 'hip.db'
 
-# SQL command for making a table
-sql_maketable = f'create table hip (hip integer primary key, ' \
-    + f'ra_hms text, ra_deg real, dec_dms text, dec_deg real, ' \
-    + f'vmag real, bv real, vi real, parallax real, ' \
-    + f'pmra real, pmdec real, sptype text);'
+    # SQL command for making a table
+    sql_maketable = f'create table hip (hip integer primary key, ' \
+        + f'ra_hms text, ra_deg real, dec_dms text, dec_deg real, ' \
+        + f'vmag real, bv real, vi real, parallax real, ' \
+        + f'pmra real, pmdec real, sptype text);'
 
-# opening a connection to database
-with contextlib.closing (sqlite3.connect (file_db)) as conn:
-    # constructing a cursor object
-    cursor = conn.cursor ()
+    # opening a connection to database
+    with contextlib.closing (sqlite3.connect (file_db)) as conn:
+        # constructing a cursor object
+        cursor = conn.cursor ()
 
-    # making a table
-    cursor.execute (sql_maketable)
+        # making a table
+        cursor.execute (sql_maketable)
 
-    # committing transaction
-    conn.commit ()
+        # committing transaction
+        conn.commit ()
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
