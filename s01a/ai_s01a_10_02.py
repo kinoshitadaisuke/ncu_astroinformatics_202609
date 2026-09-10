@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:57:55 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 14:16:13 (UT+08:00) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # importing scipy module
-import scipy
+import scipy.odr
 
 # function for fitting
 def func (coeff, x):
