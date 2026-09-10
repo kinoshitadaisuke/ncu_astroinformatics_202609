@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/09 13:33:13 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/10 13:24:11 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -23,16 +23,6 @@ import scipy.integrate
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 import matplotlib.animation
-
-# function for solving equation of motion
-def eqmo (t, y):
-    r_cubed = ( y[0]**2 + y[2]**2 )**1.5
-    dy      = numpy.zeros_like (y)
-    dy[0]   = y[1]
-    dy[1]   = -GM * y[0] / r_cubed
-    dy[2]   = y[3]
-    dy[3]   = -GM * y[2] / r_cubed
-    return dy
 
 # main function
 def main ():
@@ -107,6 +97,16 @@ def main ():
 
     # initial values
     y_init = (qx0, vx0 * numpy.sqrt (GM), qy0, vy0 * numpy.sqrt (GM))
+
+    # function for solving equation of motion
+    def eqmo (t, y):
+        r_cubed = ( y[0]**2 + y[2]**2 )**1.5
+        dy      = numpy.zeros_like (y)
+        dy[0]   = y[1]
+        dy[1]   = -GM * y[0] / r_cubed
+        dy[2]   = y[3]
+        dy[3]   = -GM * y[2] / r_cubed
+        return dy
 
     # orbital integration
     sol = scipy.integrate.solve_ivp (eqmo, [0.0, duration], y_init, \
