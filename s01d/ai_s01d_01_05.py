@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:11:47 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:22:10 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -19,7 +19,7 @@ import matplotlib.backends.backend_agg
 # main function
 def main ():
     # output file name
-    file_output = 'appy_s08_01_05.png'
+    file_output = 'ai_s01d_01_05.png'
 
     # resolution in DPI
     resolution_dpi = 150
