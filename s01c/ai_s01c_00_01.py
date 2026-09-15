@@ -1,51 +1,57 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/04/20 08:37:10 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 08:33:23 (UT+08:00) daisuke>
 #
 
 # importing argparse module
 import argparse
 
-#
-# command-line argument analysis
-#
+# main function
+def main ():
+    #
+    # command-line argument analysis
+    #
 
-# constructing parser object
-desc   = f"availability check of Python modules"
-parser = argparse.ArgumentParser (description=desc)
+    # constructing parser object
+    desc   = f"availability check of Python modules"
+    parser = argparse.ArgumentParser (description=desc)
 
-# adding options
-parser.add_argument ('module', type=str, nargs='+', \
-                     help=f"module name (e.g. numpy)")
+    # adding options
+    parser.add_argument ('module', type=str, nargs='+', \
+                         help=f"module name (e.g. numpy)")
 
-# analysis of command-line arguments
-args = parser.parse_args ()
+    # analysis of command-line arguments
+    args = parser.parse_args ()
 
-#
-# input parameters
-#
+    #
+    # input parameters
+    #
 
-# list of module names for availability check
-list_modules = args.module
+    # list of module names for availability check
+    list_modules = args.module
 
-#
-# availability check of modules
-#
+    #
+    # availability check of modules
+    #
 
-for module in list_modules:
-    # check of availability of rebound module
-    try:
-        # importing module
-        imported = __import__ (module)
-    except:
-        # if rebound module is not installed, print an error message
-        print (f"The module '{module}' is NOT installed on your computer.")
-    else:
-        # if rebound module is found, print following message
-        print (f"The module '{module}' is found on your computer.")
-        print (f"{imported}")
-    finally:
-        # print that the check of availability of rebound module is finished
-        print (f"An availability check of '{module}' module is now finished.")
-        print (f"")
+    for module in list_modules:
+        # check of availability of rebound module
+        try:
+            # importing module
+            imported = __import__ (module)
+        except:
+            # if rebound module is not installed, print an error message
+            print (f"The module '{module}' is NOT installed on your computer.")
+        else:
+            # if rebound module is found, print following message
+            print (f"The module '{module}' is found on your computer.")
+            print (f"{imported}")
+        finally:
+            # print that the check of availability of rebound module is finished
+            print (f"An availability check of '{module}' module is now finished.")
+            print (f"")
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
