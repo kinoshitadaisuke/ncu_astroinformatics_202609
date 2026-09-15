@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:15:26 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:23:25 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -21,7 +21,7 @@ def main ():
     file_input = 'solar_spec.data'
 
     # figure file name
-    file_output = 'appy_s08_02_02.png'
+    file_output = 'ai_s01d_02_02.png'
 
     # resolution in DPI
     resolution_dpi = 150
