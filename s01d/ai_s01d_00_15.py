@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/04/10 10:26:27 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:07:47 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -13,12 +13,6 @@ import scipy.constants
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# output file name
-file_output = 'appy_s08_00_15.png'
-
-# resolution in DPI
-resolution_dpi = 150
 
 #
 # function to calculate blackbody curve
@@ -40,49 +34,61 @@ def bb_nu (frequency, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# temperature of blackbody
-T = 5800.0
+# main function
+def main ():
+    # output file name
+    file_output = 'appy_s08_00_15.png'
 
-# printing temperature of blackbody
-print (f'Temperature:')
-print (f'  T = {T} K')
+    # resolution in DPI
+    resolution_dpi = 150
 
-# range of frequency (from 10**0 Hz to 10**16 Hz)
-frequency_min = 0.0
-frequency_max = 16.0
+    # temperature of blackbody
+    T = 5800.0
 
-# frequency in Hz
-frequency = numpy.logspace (frequency_min, frequency_max, num=16001)
+    # printing temperature of blackbody
+    print (f'Temperature:')
+    print (f'  T = {T} K')
 
-# T = 5800 K blackbody spectrum
-bb_5800 = bb_nu (frequency, T)
+    # range of frequency (from 10**0 Hz to 10**16 Hz)
+    frequency_min = 0.0
+    frequency_max = 16.0
 
-# printing Planck function
-print (f'Frequency:')
-print (f'{frequency}')
-print (f'Planck function:')
-print (f'{bb_5800}')
+    # frequency in Hz
+    frequency = numpy.logspace (frequency_min, frequency_max, num=16001)
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    # T = 5800 K blackbody spectrum
+    bb_5800 = bb_nu (frequency, T)
 
-# labels
-ax.set_xlabel (r'Frequency [Hz]')
-ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
+    # printing Planck function
+    print (f'Frequency:')
+    print (f'{frequency}')
+    print (f'Planck function:')
+    print (f'{bb_5800}')
 
-# axes
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.set_xlim (10**1, 10**18)
-ax.set_ylim (10**-30, 10**-3)
+    # making objects "fig", "canvas", and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# plotting data
-ax.plot (frequency, bb_5800, \
-         linestyle='-', linewidth=3, color='red', \
-         label='Blackbody of T = 5800 K')
-ax.legend ()
+    # labels
+    ax.set_xlabel (r'Frequency [Hz]')
+    ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
 
-# saving the plot into a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # axes
+    ax.set_xscale ('log')
+    ax.set_yscale ('log')
+    ax.set_xlim (10**1, 10**18)
+    ax.set_ylim (10**-30, 10**-3)
+
+    # plotting data
+    ax.plot (frequency, bb_5800, \
+             linestyle='-', linewidth=3, color='red', \
+             label='Blackbody of T = 5800 K')
+    ax.legend ()
+
+    # saving the plot into a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
