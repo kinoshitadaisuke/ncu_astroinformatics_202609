@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:17:06 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:24:00 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -24,7 +24,7 @@ def main ():
     file_input = 'hd61005_spec.data'
 
     # output file name
-    file_output = 'appy_s08_03_05.png'
+    file_output = 'ai_s01d_03_05.png'
 
     # resolution in DPI
     resolution_dpi = 150
