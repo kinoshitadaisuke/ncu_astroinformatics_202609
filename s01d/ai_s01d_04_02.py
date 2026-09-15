@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:18:10 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:24:15 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -17,7 +17,7 @@ def main ():
     file_input = 'cmb_cobe.data'
 
     # output file name
-    file_output = 'appy_s08_04_02.png'
+    file_output = 'ai_s01d_04_02.png'
 
     # resolution in DPI
     resolution_dpi = 150
