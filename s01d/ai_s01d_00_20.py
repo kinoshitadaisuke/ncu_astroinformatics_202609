@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/04/10 10:29:51 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:10:01 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -13,12 +13,6 @@ import scipy.constants
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# output file name
-file_output = 'appy_s08_00_20.png'
-
-# resolution in DPI
-resolution_dpi = 150
 
 #
 # function to calculate blackbody curve
@@ -40,84 +34,96 @@ def bb_nu (frequency, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# temperature of blackbody
-T = numpy.logspace (0.0, 8.0, num=9, dtype=numpy.longdouble)
+# main function
+def main ():
+    # output file name
+    file_output = 'appy_s08_00_20.png'
 
-# printing temperature of blackbody
-print (f'Temperature:')
-print (f'  T = {T} K')
+    # resolution in DPI
+    resolution_dpi = 150
 
-# range of frequency (from 10**2 Hz to 10**20 Hz)
-frequency_min = 2.0
-frequency_max = 20.0
+    # temperature of blackbody
+    T = numpy.logspace (0.0, 8.0, num=9, dtype=numpy.longdouble)
 
-# frequency in Hz
-frequency = numpy.logspace (frequency_min, frequency_max, num=18001, \
-                            dtype=numpy.longdouble)
+    # printing temperature of blackbody
+    print (f'Temperature:')
+    print (f'  T = {T} K')
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    # range of frequency (from 10**2 Hz to 10**20 Hz)
+    frequency_min = 2.0
+    frequency_max = 20.0
 
-# labels
-ax.set_xlabel (r'Frequency [Hz]')
-ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
+    # frequency in Hz
+    frequency = numpy.logspace (frequency_min, frequency_max, num=18001, \
+                                dtype=numpy.longdouble)
 
-# axes
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.set_xlim (10**3, numpy.array ([10**20], dtype=numpy.longdouble))
-ax.set_ylim (10**-30, 10**6)
+    # making objects "fig", "canvas", and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# make secondary X-axis
-c   = scipy.constants.physical_constants['speed of light in vacuum'][0]
-ax2 = ax.secondary_xaxis (location='top', \
-                          functions=(lambda x: c/x, lambda x: c/x) )
-ax2.set_xlabel (r'Wavelength [m]')
+    # labels
+    ax.set_xlabel (r'Frequency [Hz]')
+    ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
 
-# showing gamma-ray region
-ax.fill_between (numpy.array ([3*10**19, 10**21], dtype=numpy.longdouble), \
-                 10**-30, 10**8, \
-                 color='magenta', alpha=0.1)
-ax.text (x=4*10**19, y=10**-29, s=r'$\gamma$-ray')
+    # axes
+    ax.set_xscale ('log')
+    ax.set_yscale ('log')
+    ax.set_xlim (10**3, numpy.array ([10**20], dtype=numpy.longdouble))
+    ax.set_ylim (10**-30, 10**6)
 
-# showing X-ray region
-ax.fill_between (numpy.array ([3*10**16, 3*10**19], dtype=numpy.longdouble), \
-                 10**-30, 10**8, \
-                 color='cyan', alpha=0.1)
-ax.text (x=3*10**17, y=10**-29, s=r'X-ray')
+    # make secondary X-axis
+    c   = scipy.constants.physical_constants['speed of light in vacuum'][0]
+    ax2 = ax.secondary_xaxis (location='top', \
+                              functions=(lambda x: c/x, lambda x: c/x) )
+    ax2.set_xlabel (r'Wavelength [m]')
 
-# showing UV region
-ax.fill_between ([10**15, 3*10**16], 10**-30, 10**8, \
-                 color='violet', alpha=0.1)
-ax.text (x=2*10**15, y=10**-29, s=r'UV')
+    # showing gamma-ray region
+    ax.fill_between (numpy.array ([3*10**19, 10**21], dtype=numpy.longdouble), \
+                     10**-30, 10**8, \
+                     color='magenta', alpha=0.1)
+    ax.text (x=4*10**19, y=10**-29, s=r'$\gamma$-ray')
 
-# showing visible region
-ax.fill_between ([3*10**14, 10**15], 10**-30, 10**8, \
-                 color='green', alpha=0.1)
-ax.text (x=10**14, y=3*10**-28, s=r'Visible')
+    # showing X-ray region
+    ax.fill_between (numpy.array ([3*10**16, 3*10**19], dtype=numpy.longdouble), \
+                     10**-30, 10**8, \
+                     color='cyan', alpha=0.1)
+    ax.text (x=3*10**17, y=10**-29, s=r'X-ray')
 
-# showing IR region
-ax.fill_between ([10**12, 3*10**14], 10**-30, 10**8, \
-                 color='red', alpha=0.1)
-ax.text (x=10**13, y=10**-29, s=r'IR')
+    # showing UV region
+    ax.fill_between ([10**15, 3*10**16], 10**-30, 10**8, \
+                     color='violet', alpha=0.1)
+    ax.text (x=2*10**15, y=10**-29, s=r'UV')
 
-# showing radio region
-ax.fill_between ([10**0, 10**12], 10**-30, 10**8, \
-                 color='yellow', alpha=0.1)
-ax.text (x=10**8, y=10**-29, s=r'Radio')
+    # showing visible region
+    ax.fill_between ([3*10**14, 10**15], 10**-30, 10**8, \
+                     color='green', alpha=0.1)
+    ax.text (x=10**14, y=3*10**-28, s=r'Visible')
 
-# plotting data
-for i in range (len (T)):
-    # making model spectrum for given temperature using Planck's radiation law
-    bb = bb_nu (frequency, T[i])
-    # label
-    text_label = f'T = {T[i]:g} K'
-    ax.plot (frequency, bb, linestyle='-', linewidth=3, label=text_label)
+    # showing IR region
+    ax.fill_between ([10**12, 3*10**14], 10**-30, 10**8, \
+                     color='red', alpha=0.1)
+    ax.text (x=10**13, y=10**-29, s=r'IR')
 
-# legend
-ax.legend ()
+    # showing radio region
+    ax.fill_between ([10**0, 10**12], 10**-30, 10**8, \
+                     color='yellow', alpha=0.1)
+    ax.text (x=10**8, y=10**-29, s=r'Radio')
 
-# saving the plot into a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # plotting data
+    for i in range (len (T)):
+        # making model spectrum for given temperature using Planck's radiation law
+        bb = bb_nu (frequency, T[i])
+        # label
+        text_label = f'T = {T[i]:g} K'
+        ax.plot (frequency, bb, linestyle='-', linewidth=3, label=text_label)
+
+    # legend
+    ax.legend ()
+
+    # saving the plot into a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
