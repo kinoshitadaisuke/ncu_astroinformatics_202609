@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/04/10 10:24:22 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:06:34 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -13,12 +13,6 @@ import scipy.constants
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# output file name
-file_output = 'appy_s08_00_12.png'
-
-# resolution in DPI
-resolution_dpi = 150
 
 #
 # function to calculate blackbody curve
@@ -40,61 +34,73 @@ def bb_lambda (wavelength, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# temperature of blackbody
-T = 5800.0
+# main function
+def main ():
+    # output file name
+    file_output = 'appy_s08_00_12.png'
 
-# printing temperature of blackbody
-print (f'Temperature:')
-print (f'  T = {T} K')
+    # resolution in DPI
+    resolution_dpi = 150
 
-# range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
-wavelength_min = -8.0
-wavelength_max = -3.0
+    # temperature of blackbody
+    T = 5800.0
 
-# wavelength in metre
-wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
+    # printing temperature of blackbody
+    print (f'Temperature:')
+    print (f'  T = {T} K')
 
-# T = 5800 K blackbody spectrum
-bb_5800 = bb_lambda (wavelength, T)
+    # range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
+    wavelength_min = -8.0
+    wavelength_max = -3.0
 
-# printing Planck function
-print (f'Wavelength:')
-print (f'{wavelength}')
-print (f'Planck function:')
-print (f'{bb_5800}')
+    # wavelength in metre
+    wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    # T = 5800 K blackbody spectrum
+    bb_5800 = bb_lambda (wavelength, T)
 
-# labels
-ax.set_xlabel (r'Wavelength [$\mu$m]')
-ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
+    # printing Planck function
+    print (f'Wavelength:')
+    print (f'{wavelength}')
+    print (f'Planck function:')
+    print (f'{bb_5800}')
 
-# axes
-ax.set_xscale ('log')
-ax.set_yscale ('log')
-ax.set_xlim (0.03, 1000.0)
-ax.set_ylim (10**0, bb_5800.max () * 3)
+    # making objects "fig", "canvas", and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# showing UV region
-ax.fill_between ([0.03, 0.3], 10**-2, 10**18, color='violet', alpha=0.1)
-ax.text (x=0.1, y=10**1, s='UV')
+    # labels
+    ax.set_xlabel (r'Wavelength [$\mu$m]')
+    ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
 
-# showing visible region
-ax.fill_between ([0.3, 1.0], 10**-2, 10**18, color='green', alpha=0.1)
-ax.text (x=0.35, y=10**1, s='Visible')
+    # axes
+    ax.set_xscale ('log')
+    ax.set_yscale ('log')
+    ax.set_xlim (0.03, 1000.0)
+    ax.set_ylim (10**0, bb_5800.max () * 3)
 
-# showing IR region
-ax.fill_between ([1.0, 1000.0], 10**-2, 10**18, color='red', alpha=0.1)
-ax.text (x=3.0, y=10**1, s='IR')
+    # showing UV region
+    ax.fill_between ([0.03, 0.3], 10**-2, 10**18, color='violet', alpha=0.1)
+    ax.text (x=0.1, y=10**1, s='UV')
 
-# plotting data
-ax.plot (wavelength * 10**6, bb_5800, \
-         linestyle='-', linewidth=3, color='red', \
-         label='Blackbody of T = 5800 K')
-ax.legend ()
+    # showing visible region
+    ax.fill_between ([0.3, 1.0], 10**-2, 10**18, color='green', alpha=0.1)
+    ax.text (x=0.35, y=10**1, s='Visible')
 
-# saving the plot into a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # showing IR region
+    ax.fill_between ([1.0, 1000.0], 10**-2, 10**18, color='red', alpha=0.1)
+    ax.text (x=3.0, y=10**1, s='IR')
+
+    # plotting data
+    ax.plot (wavelength * 10**6, bb_5800, \
+             linestyle='-', linewidth=3, color='red', \
+             label='Blackbody of T = 5800 K')
+    ax.legend ()
+
+    # saving the plot into a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
