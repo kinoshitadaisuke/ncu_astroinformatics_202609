@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/04/10 10:20:17 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:03:25 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -13,12 +13,6 @@ import scipy.constants
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
-
-# output file name
-file_output = 'appy_s08_00_03.png'
-
-# resolution in DPI
-resolution_dpi = 150
 
 #
 # function to calculate blackbody curve
@@ -40,43 +34,55 @@ def bb_lambda (wavelength, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# temperature of blackbody
-T = 5800.0
+# main function
+def main ():
+    # output file name
+    file_output = 'appy_s08_00_03.png'
 
-# printing temperature of blackbody
-print (f'Temperature:')
-print (f'  T = {T} K')
+    # resolution in DPI
+    resolution_dpi = 150
 
-# range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
-wavelength_min = -8.0
-wavelength_max = -3.0
+    # temperature of blackbody
+    T = 5800.0
 
-# wavelength in metre
-wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
+    # printing temperature of blackbody
+    print (f'Temperature:')
+    print (f'  T = {T} K')
 
-# T = 5800 K blackbody spectrum
-bb_5800 = bb_lambda (wavelength, T)
+    # range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
+    wavelength_min = -8.0
+    wavelength_max = -3.0
 
-# printing Planck function
-print (f'Wavelength:')
-print (f'{wavelength}')
-print (f'Planck function:')
-print (f'{bb_5800}')
+    # wavelength in metre
+    wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    # T = 5800 K blackbody spectrum
+    bb_5800 = bb_lambda (wavelength, T)
 
-# labels
-ax.set_xlabel (r'Wavelength [$\mu$m]')
-ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
+    # printing Planck function
+    print (f'Wavelength:')
+    print (f'{wavelength}')
+    print (f'Planck function:')
+    print (f'{bb_5800}')
 
-# plotting data
-ax.plot (wavelength * 10**6, bb_5800, \
-         linestyle='-', linewidth=3, color='red', \
-         label='Blackbody of T = 5800 K')
-ax.legend ()
+    # making objects "fig", "canvas", and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# saving the plot into a file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # labels
+    ax.set_xlabel (r'Wavelength [$\mu$m]')
+    ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
+
+    # plotting data
+    ax.plot (wavelength * 10**6, bb_5800, \
+             linestyle='-', linewidth=3, color='red', \
+             label='Blackbody of T = 5800 K')
+    ax.legend ()
+
+    # saving the plot into a file
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
