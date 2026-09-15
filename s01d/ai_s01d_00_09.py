@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/30 22:21:20 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:05:19 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -11,35 +11,41 @@ import numpy
 import scipy.constants
 import scipy.optimize
 
-# speed of light in vacuum
-c = scipy.constants.physical_constants['speed of light in vacuum']
+# main function
+def main ():
+    # speed of light in vacuum
+    c = scipy.constants.physical_constants['speed of light in vacuum']
 
-# Planck constant
-h = scipy.constants.physical_constants['Planck constant']
+    # Planck constant
+    h = scipy.constants.physical_constants['Planck constant']
 
-# Boltzmann constant
-k = scipy.constants.physical_constants['Boltzmann constant']
+    # Boltzmann constant
+    k = scipy.constants.physical_constants['Boltzmann constant']
 
-# temperature of blackbody
-T = 5800.0
+    # temperature of blackbody
+    T = 5800.0
 
-# function for solving the equation (x-5) * exp(x) + 5 = 0
-def find_peak (x):
-    y = ( (x - 5.0) * numpy.exp (x) + 5 )**2
-    return (y)
+    # function for solving the equation (x-5) * exp(x) + 5 = 0
+    def find_peak (x):
+        y = ( (x - 5.0) * numpy.exp (x) + 5 )**2
+        return (y)
 
-# finding the minimum x corresponding to the peak of blackbody radiation
-x_min = scipy.optimize.minimize_scalar (find_peak, bracket=(2.0, 5.0), \
-                                        method='Brent')
+    # finding the minimum x corresponding to the peak of blackbody radiation
+    x_min = scipy.optimize.minimize_scalar (find_peak, bracket=(2.0, 5.0), \
+                                            method='Brent')
 
-# printing the minimum x
-print (x_min)
+    # printing the minimum x
+    print (x_min)
 
-# finding a peak of T=5800 K blackbody radiation spectrum
-wavelength_peak = h[0] * c[0] / (x_min.x * k[0] * T)
+    # finding a peak of T=5800 K blackbody radiation spectrum
+    wavelength_peak = h[0] * c[0] / (x_min.x * k[0] * T)
 
-# printing peak wavelength of black body radiation
-print (f'peak wavelength of T={T} K blackbody:')
-print (f'  lambda = {wavelength_peak} [m]')
-print (f'         = {wavelength_peak * 10**6} [micron]')
-print (f'         = {wavelength_peak * 10**9} [nm]')
+    # printing peak wavelength of black body radiation
+    print (f'peak wavelength of T={T} K blackbody:')
+    print (f'  lambda = {wavelength_peak} [m]')
+    print (f'         = {wavelength_peak * 10**6} [micron]')
+    print (f'         = {wavelength_peak * 10**9} [nm]')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
