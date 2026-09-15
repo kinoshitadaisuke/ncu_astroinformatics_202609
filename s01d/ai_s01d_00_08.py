@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/30 22:21:14 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:05:04 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -37,16 +37,22 @@ def bb_lambda (wavelength, T):
 def nbb_lambda (wavelength, T):
     return (bb_lambda (wavelength, T) * -1.0)
 
-# temperature of blackbody
-T = 30000.0
+# main function
+def main ():
+    # temperature of blackbody
+    T = 30000.0
 
-# finding a peak of T=30000 K blackbody radiation spectrum
-wavelength_peak = scipy.optimize.minimize_scalar (nbb_lambda, \
-                                                  bracket=(10**-8, 10**-3), \
-                                                  args=(T), method='Brent')
+    # finding a peak of T=30000 K blackbody radiation spectrum
+    wavelength_peak = scipy.optimize.minimize_scalar (nbb_lambda, \
+                                                      bracket=(10**-8, 10**-3), \
+                                                      args=(T), method='Brent')
 
-# printing peak wavelength of black body radiation
-print (f'peak wavelength of T={T} K blackbody:')
-print (f'  lambda = {wavelength_peak.x} [m]')
-print (f'         = {wavelength_peak.x * 10**6} [micron]')
-print (f'         = {wavelength_peak.x * 10**9} [nm]')
+    # printing peak wavelength of black body radiation
+    print (f'peak wavelength of T={T} K blackbody:')
+    print (f'  lambda = {wavelength_peak.x} [m]')
+    print (f'         = {wavelength_peak.x * 10**6} [micron]')
+    print (f'         = {wavelength_peak.x * 10**9} [nm]')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
