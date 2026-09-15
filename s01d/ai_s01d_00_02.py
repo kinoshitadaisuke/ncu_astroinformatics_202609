@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/30 22:20:36 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:02:47 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -30,25 +30,31 @@ def bb_lambda (wavelength, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# temperature of blackbody
-T = 3000.0
+# main function
+def main ():
+    # temperature of blackbody
+    T = 3000.0
 
-# printing temperature of blackbody
-print (f'Temperature:')
-print (f'  T = {T} K')
+    # printing temperature of blackbody
+    print (f'Temperature:')
+    print (f'  T = {T} K')
 
-# range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
-wavelength_min = -8.0
-wavelength_max = -3.0
+    # range of wavelength (from 10**-8 m = 10 nm to 10**-3 m = 1 mm)
+    wavelength_min = -8.0
+    wavelength_max = -3.0
 
-# wavelength in metre
-wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
+    # wavelength in metre
+    wavelength = numpy.logspace (wavelength_min, wavelength_max, num=5001)
 
-# T = 3000 K blackbody spectrum
-bb_3000 = bb_lambda (wavelength, T)
+    # T = 3000 K blackbody spectrum
+    bb_3000 = bb_lambda (wavelength, T)
 
-# printing Planck function
-print (f'Wavelength:')
-print (f'{wavelength}')
-print (f'Planck function:')
-print (f'{bb_3000}')
+    # printing Planck function
+    print (f'Wavelength:')
+    print (f'{wavelength}')
+    print (f'Planck function:')
+    print (f'{bb_3000}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
