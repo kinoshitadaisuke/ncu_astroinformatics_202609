@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:06:59 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:20:35 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -38,7 +38,7 @@ def bb_lambda (wavelength, T):
 if (__name__ == '__main__'):
     main ()
     # output file name
-    file_output = 'appy_s08_00_13.png'
+    file_output = 'ai_s01d_00_13.png'
 
     # resolution in DPI
     resolution_dpi = 150
