@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:09:01 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/15 12:21:16 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -69,7 +69,7 @@ def wi_nu (frequency, T):
 # main function
 def main ():
     # output file name
-    file_output = 'appy_s08_00_18.png'
+    file_output = 'ai_s01d_00_18.png'
 
     # resolution in DPI
     resolution_dpi = 150
