@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/15 12:20:35 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/18 11:44:30 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -34,9 +34,8 @@ def bb_lambda (wavelength, T):
     # returning blackbody radiation curve
     return (blackbody)
 
-# execution of main function
-if (__name__ == '__main__'):
-    main ()
+# main function
+def main ():
     # output file name
     file_output = 'ai_s01d_00_13.png'
 
