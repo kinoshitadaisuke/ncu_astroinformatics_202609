@@ -1,36 +1,42 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:59:19 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:58:26 (UT+08:00) daisuke>
 #
 
 # importing astropy module
 import astropy.io.fits
 import astropy.wcs
 
-# input file name
-file_input = 'm3.fits'
+# main function
+def main ():
+    # input file name
+    file_input = 'm3.fits'
 
-# opening FITS file
-with astropy.io.fits.open (file_input) as hdu_list:
-    # printing HDU information
-    print (hdu_list.info ())
+    # opening FITS file
+    with astropy.io.fits.open (file_input) as hdu_list:
+        # printing HDU information
+        print (hdu_list.info ())
 
-    # reading FITS header, WCS information, and image data
-    header = hdu_list[0].header
-    wcs    = astropy.wcs.WCS (header)
-    image  = hdu_list[0].data
+        # reading FITS header, WCS information, and image data
+        header = hdu_list[0].header
+        wcs    = astropy.wcs.WCS (header)
+        image  = hdu_list[0].data
 
-# printing data types of the header, wcs, and image
-print (f'type of "header" : {type (header)}')
-print (f'type of "wcs"    : {type (wcs)}')
-print (f'type of "image"  : {type (image)}')
+    # printing data types of the header, wcs, and image
+    print (f'type of "header" : {type (header)}')
+    print (f'type of "wcs"    : {type (wcs)}')
+    print (f'type of "image"  : {type (image)}')
 
-# printing image data
-print ()
-print (f'ndim of image data  : {image.ndim}')
-print (f'shape of image data : {image.shape}')
-print (f'size of image data  : {image.size}')
-print ()
-print (f'image data of FITS file "{file_input}":')
-print (image)
+    # printing image data
+    print ()
+    print (f'ndim of image data  : {image.ndim}')
+    print (f'shape of image data : {image.shape}')
+    print (f'size of image data  : {image.size}')
+    print ()
+    print (f'image data of FITS file "{file_input}":')
+    print (image)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
