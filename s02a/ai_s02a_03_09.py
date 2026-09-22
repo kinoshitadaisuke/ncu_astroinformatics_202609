@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/27 21:26:49 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:51:16 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -11,23 +11,29 @@ import numpy
 import astropy.time
 import astropy.units
 
-# units
-u_hr = astropy.units.hr
+# main function
+def main ():
+    # units
+    u_hr = astropy.units.hr
 
-# t_utc
-t_utc = astropy.time.Time ('2026-06-01 12:00:00', format='iso', scale='utc')
+    # t_utc
+    t_utc = astropy.time.Time ('2026-06-01 12:00:00', format='iso', scale='utc')
 
-# timezone
-timezone_taiwan = astropy.time.TimezoneInfo (utc_offset=+8.0 * u_hr)
-timezone_hawaii = astropy.time.TimezoneInfo (utc_offset=-10.0 * u_hr)
+    # timezone
+    timezone_taiwan = astropy.time.TimezoneInfo (utc_offset=+8.0 * u_hr)
+    timezone_hawaii = astropy.time.TimezoneInfo (utc_offset=-10.0 * u_hr)
 
-# date/time in Taiwan
-t_taiwan = t_utc.to_datetime (timezone=timezone_taiwan)
+    # date/time in Taiwan
+    t_taiwan = t_utc.to_datetime (timezone=timezone_taiwan)
 
-# date/time in Hawaii
-t_hawaii = t_utc.to_datetime (timezone=timezone_hawaii)
+    # date/time in Hawaii
+    t_hawaii = t_utc.to_datetime (timezone=timezone_hawaii)
 
-# printing results
-print (f'date/time in UTC    = {t_utc}')
-print (f'date/time in Taiwan = {t_taiwan}')
-print (f'date/time in Hawaii = {t_hawaii}')
+    # printing results
+    print (f'date/time in UTC    = {t_utc}')
+    print (f'date/time in Taiwan = {t_taiwan}')
+    print (f'date/time in Hawaii = {t_hawaii}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
