@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:52:54 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:42:18 (UT+08:00) daisuke>
 #
 
 # importing astropy module
 import astropy.units
 
-# units
-u_m        = astropy.units.m
-u_mm       = astropy.units.mm
-u_GHz      = astropy.units.GHz
-u_spectral = astropy.units.spectral ()
+# main function
+def main ():
+    # units
+    u_m        = astropy.units.m
+    u_mm       = astropy.units.mm
+    u_GHz      = astropy.units.GHz
+    u_spectral = astropy.units.spectral ()
 
-# frequency
-freq = 115 * u_GHz
+    # frequency
+    freq = 115 * u_GHz
 
-# wavelength corresponding to EM wave of frequency 115 GHz
-wl    = freq.to (u_m, equivalencies=u_spectral)
-wl_mm = freq.to (u_mm, equivalencies=u_spectral)
+    # wavelength corresponding to EM wave of frequency 115 GHz
+    wl    = freq.to (u_m, equivalencies=u_spectral)
+    wl_mm = freq.to (u_mm, equivalencies=u_spectral)
 
-# printing result
-print (f'frequency = {freq:g}  ==>  wavelength = {wl:g} = {wl_mm}')
+    # printing result
+    print (f'frequency = {freq:g}  ==>  wavelength = {wl:g} = {wl_mm}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
