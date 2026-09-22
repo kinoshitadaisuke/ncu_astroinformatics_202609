@@ -1,28 +1,34 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:53:28 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:43:49 (UT+08:00) daisuke>
 #
 
 # importing astropy module
 import astropy.constants
 import astropy.units
 
-# units
-u_ABmag = astropy.units.ABmag
-u_Jy    = astropy.units.Jy
-u_uJy   = astropy.units.uJy
+# main function
+def main ():
+    # units
+    u_ABmag = astropy.units.ABmag
+    u_Jy    = astropy.units.Jy
+    u_uJy   = astropy.units.uJy
 
-# V-band magnitude of 0 in AB magnitude system
-m_V = 0.0 * u_ABmag
+    # V-band magnitude of 0 in AB magnitude system
+    m_V = 0.0 * u_ABmag
 
-# K-band magnitude of 20 in AB magnitude system
-m_K = 20.0 * u_ABmag
+    # K-band magnitude of 20 in AB magnitude system
+    m_K = 20.0 * u_ABmag
 
-# conversion of m_K = 20.0 into Jy
-flux_density_V = m_V.to (u_Jy)
-flux_density_K = m_K.to (u_uJy)
+    # conversion of m_K = 20.0 into Jy
+    flux_density_V = m_V.to (u_Jy)
+    flux_density_K = m_K.to (u_uJy)
 
-# printing result
-print (f'm_V = {m_V:4.1f}  ==>  flux density = {flux_density_V:g}')
-print (f'm_K = {m_K:4.1f}  ==>  flux density = {flux_density_K:g}')
+    # printing result
+    print (f'm_V = {m_V:4.1f}  ==>  flux density = {flux_density_V:g}')
+    print (f'm_K = {m_K:4.1f}  ==>  flux density = {flux_density_K:g}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
