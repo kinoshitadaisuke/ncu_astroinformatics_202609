@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:58:48 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:57:15 (UT+08:00) daisuke>
 #
 
 # importing astropy module
@@ -11,27 +11,33 @@ import astropy.coordinates
 # importing astroquery module
 import astroquery.simbad
 
-# object name
-object_name = 'NGC 1234'
+# main function
+def main ():
+    # object name
+    object_name = 'NGC 1234'
 
-# units
-u_ha  = astropy.units.hourangle
-u_deg = astropy.units.deg
+    # units
+    u_ha  = astropy.units.hourangle
+    u_deg = astropy.units.deg
 
-# name resolver
-query_result = astroquery.simbad.Simbad.query_object (object_name)
+    # name resolver
+    query_result = astroquery.simbad.Simbad.query_object (object_name)
 
-# coordinate from Simbad
-ra_deg  = query_result['ra'][0]
-dec_deg = query_result['dec'][0]
+    # coordinate from Simbad
+    ra_deg  = query_result['ra'][0]
+    dec_deg = query_result['dec'][0]
 
-# making SkyCoord object of astropy
-coord = astropy.coordinates.SkyCoord (ra_deg, dec_deg, frame='icrs', unit=u_deg)
+    # making SkyCoord object of astropy
+    coord = astropy.coordinates.SkyCoord (ra_deg, dec_deg, frame='icrs', unit=u_deg)
 
-# RA and Dec of coordinate in sexagesimal format
-(ra, dec) = coord.to_string (style='hmsdms').split ()
+    # RA and Dec of coordinate in sexagesimal format
+    (ra, dec) = coord.to_string (style='hmsdms').split ()
 
-# printing result
-print (f'Target name: "{object_name}"')
-print (f'  RA  = {ra:20s} = {coord.ra.deg:10.6f} [deg]')
-print (f'  Dec = {dec:20s} = {coord.dec.deg:+10.6f} [deg]')
+    # printing result
+    print (f'Target name: "{object_name}"')
+    print (f'  RA  = {ra:20s} = {coord.ra.deg:10.6f} [deg]')
+    print (f'  Dec = {dec:20s} = {coord.dec.deg:+10.6f} [deg]')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
