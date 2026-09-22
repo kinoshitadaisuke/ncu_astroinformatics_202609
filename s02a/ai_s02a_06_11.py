@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/28 20:48:13 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 14:00:04 (UT+08:00) daisuke>
 #
 
 # importing astropy module
@@ -19,52 +19,58 @@ import astroquery.skyview
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# object name
-object_name = 'M57'
+# main function
+def main ():
+    # object name
+    object_name = 'M57'
 
-# FITS file name
-file_fits = 'm57.fits'
+    # FITS file name
+    file_fits = 'm57.fits'
 
-# PNG file name
-file_png = 'm57_norm1.png'
+    # PNG file name
+    file_png = 'm57_norm1.png'
 
-# colour map
-cmap = 'viridis'
+    # colour map
+    cmap = 'viridis'
 
-# resolution in DPI
-resolution_dpi = 225
+    # resolution in DPI
+    resolution_dpi = 225
 
-# opening FITS file
-with astropy.io.fits.open (file_fits) as hdu_list:
-    # printing HDU information
-    print (hdu_list.info ())
-    
-    # reading FITS header, WCS information, and image data
-    header = hdu_list[0].header
-    wcs    = astropy.wcs.WCS (header)
-    image  = hdu_list[0].data
+    # opening FITS file
+    with astropy.io.fits.open (file_fits) as hdu_list:
+        # printing HDU information
+        print (hdu_list.info ())
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111, projection=wcs)
+        # reading FITS header, WCS information, and image data
+        header = hdu_list[0].header
+        wcs    = astropy.wcs.WCS (header)
+        image  = hdu_list[0].data
 
-# axes
-ax.set_title (object_name)
-ax.set_xlabel ('Right Ascension')
-ax.set_ylabel ('Declination')
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111, projection=wcs)
 
-# normalisation
-norm \
-    = astropy.visualization.mpl_normalize.ImageNormalize \
-    ( stretch=astropy.visualization.SinhStretch (0.15) )
+    # axes
+    ax.set_title (object_name)
+    ax.set_xlabel ('Right Ascension')
+    ax.set_ylabel ('Declination')
 
-# plotting image
-im = ax.imshow (image, origin='lower', cmap=cmap, norm=norm)
-fig.colorbar (im)
+    # normalisation
+    norm \
+        = astropy.visualization.mpl_normalize.ImageNormalize \
+        ( stretch=astropy.visualization.SinhStretch (0.15) )
 
-# printing status
-print (f'{file_fits} ==> {file_png}')
+    # plotting image
+    im = ax.imshow (image, origin='lower', cmap=cmap, norm=norm)
+    fig.colorbar (im)
 
-# saving file
-fig.savefig (file_png, dpi=resolution_dpi)
+    # printing status
+    print (f'{file_fits} ==> {file_png}')
+
+    # saving file
+    fig.savefig (file_png, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
