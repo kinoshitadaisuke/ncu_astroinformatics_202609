@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:55:29 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:48:39 (UT+08:00) daisuke>
 #
 
 # importing astropy module
 import astropy.time
 
-# date/time in UT as a string
-time_str = '2026-01-01T12:00:00'
+# main function
+def main ():
+    # date/time in UT as a string
+    time_str = '2026-01-01T12:00:00'
 
-# printing "time_str"
-print (f'type of "time_str"  = {type (time_str)}')
-print (f'value of "time_str" = "{time_str}"')
+    # printing "time_str"
+    print (f'type of "time_str"  = {type (time_str)}')
+    print (f'value of "time_str" = "{time_str}"')
 
-# constructing Astropy's Time object from a string
-time = astropy.time.Time (time_str, format='isot', scale='utc')
+    # constructing Astropy's Time object from a string
+    time = astropy.time.Time (time_str, format='isot', scale='utc')
 
-# printing "time"
-print (f'type of "time"      = {type (time)}')
-print (f'value of "time"     = "{time}"')
+    # printing "time"
+    print (f'type of "time"      = {type (time)}')
+    print (f'value of "time"     = "{time}"')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
