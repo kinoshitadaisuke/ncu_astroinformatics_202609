@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/27 21:31:16 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:52:14 (UT+08:00) daisuke>
 #
 
 # importing astropy module
@@ -9,29 +9,35 @@ import astropy.coordinates
 import astropy.time
 import astropy.units
 
-# using "DE440" for solar system ephemeris
-astropy.coordinates.solar_system_ephemeris.set ('de440')
+# main function
+def main ():
+    # using "DE440" for solar system ephemeris
+    astropy.coordinates.solar_system_ephemeris.set ('de440')
 
-# units
-u_m = astropy.units.m
+    # units
+    u_m = astropy.units.m
 
-# date/time in UTC
-t_str = '2026-07-01 04:00:00'
-t_utc = astropy.time.Time (t_str, format='iso', scale='utc')
+    # date/time in UTC
+    t_str = '2026-07-01 04:00:00'
+    t_utc = astropy.time.Time (t_str, format='iso', scale='utc')
 
-# location of observer: NCU main campus
-longitude = '121d11m12s'
-latitude  = '+24d58m12s'
-height    = 151.6 * u_m
-observer  = astropy.coordinates.EarthLocation (longitude, latitude, height)
+    # location of observer: NCU main campus
+    longitude = '121d11m12s'
+    latitude  = '+24d58m12s'
+    height    = 151.6 * u_m
+    observer  = astropy.coordinates.EarthLocation (longitude, latitude, height)
 
-# getting position of the Sun
-sun = astropy.coordinates.get_body ('sun', t_utc, location=observer)
+    # getting position of the Sun
+    sun = astropy.coordinates.get_body ('sun', t_utc, location=observer)
 
-# printing position of the Sun
-print (f'position of the Sun as observed at NCU main campus at {t_utc}:')
-print (f'  RA:  {int (sun.ra.hms.h):02d}:{int (sun.ra.hms.m):02d}', \
-       f':{sun.ra.hms.s:06.3f}', sep='')
-print (f'  Dec: {int (sun.dec.dms.d):02d}', \
-       f':{abs (int (sun.dec.dms.m)):02d}:{abs (sun.dec.dms.s):06.3f}', \
-       sep='')
+    # printing position of the Sun
+    print (f'position of the Sun as observed at NCU main campus at {t_utc}:')
+    print (f'  RA:  {int (sun.ra.hms.h):02d}:{int (sun.ra.hms.m):02d}', \
+           f':{sun.ra.hms.s:06.3f}', sep='')
+    print (f'  Dec: {int (sun.dec.dms.d):02d}', \
+           f':{abs (int (sun.dec.dms.m)):02d}:{abs (sun.dec.dms.s):06.3f}', \
+           sep='')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
