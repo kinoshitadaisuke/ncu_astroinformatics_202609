@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/27 21:23:43 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:50:57 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -11,27 +11,33 @@ import numpy
 import astropy.time
 import astropy.units
 
-# units
-u_hr = astropy.units.hr
+# main function
+def main ():
+    # units
+    u_hr = astropy.units.hr
 
-# location of observer
-longitude = '120d52m25s'
-latitude  = '+23d28m07s'
+    # location of observer
+    longitude = '120d52m25s'
+    latitude  = '+23d28m07s'
 
-# t0
-t0 = astropy.time.Time ('2026-05-01 10:00:00', format='iso', scale='utc', \
-                        location=(longitude, latitude) )
+    # t0
+    t0 = astropy.time.Time ('2026-05-01 10:00:00', format='iso', scale='utc', \
+                            location=(longitude, latitude) )
 
-# times
-delta_t = numpy.linspace (0.0, 12.0, 13) * u_hr
-times   = t0 + delta_t
+    # times
+    delta_t = numpy.linspace (0.0, 12.0, 13) * u_hr
+    times   = t0 + delta_t
 
-# calculation of local sidereal time
-lsts = times.sidereal_time ('apparent')
+    # calculation of local sidereal time
+    lsts = times.sidereal_time ('apparent')
 
-# printing results of calculations
-print (f'local sidereal time at Lulin ({longitude}, {latitude})')
-for i in range (len (times)):
-    print (f'UT: {times[i]}  ==>  ', \
-           f'LST: {int (lsts[i].hms.h):02d}:{int (lsts[i].hms.m):02d}', \
-           f':{lsts[i].hms.s:06.3f}', sep='')
+    # printing results of calculations
+    print (f'local sidereal time at Lulin ({longitude}, {latitude})')
+    for i in range (len (times)):
+        print (f'UT: {times[i]}  ==>  ', \
+               f'LST: {int (lsts[i].hms.h):02d}:{int (lsts[i].hms.m):02d}', \
+               f':{lsts[i].hms.s:06.3f}', sep='')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
