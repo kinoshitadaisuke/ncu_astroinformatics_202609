@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/22 12:52:10 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:40:35 (UT+08:00) daisuke>
 #
 
 # importing astropy module
 import astropy.units
 
-# units
-u_sec = astropy.units.s
+# main function
+def main ():
+    # units
+    u_sec = astropy.units.s
 
-# t1 = 3600 sec
-t1 = 3600.0 * u_sec
+    # t1 = 3600 sec
+    t1 = 3600.0 * u_sec
 
-# t2 = 900 sec
-t2 = 900.0 * u_sec
+    # t2 = 900 sec
+    t2 = 900.0 * u_sec
 
-# calculation of t3 = t1 - t2
-t3 = t1 - t2
+    # calculation of t3 = t1 - t2
+    t3 = t1 - t2
 
-# printing t1, t2, and t3
-print (f't1 = {t1}')
-print (f't2 = {t2}')
-print (f't3 = t1 - t2 = {t3}')
+    # printing t1, t2, and t3
+    print (f't1 = {t1}')
+    print (f't2 = {t2}')
+    print (f't3 = t1 - t2 = {t3}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
