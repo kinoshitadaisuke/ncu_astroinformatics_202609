@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/03/28 20:44:04 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/22 13:58:47 (UT+08:00) daisuke>
 #
 
 # importing astropy module
@@ -12,45 +12,51 @@ import astropy.wcs
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# input file name
-file_input = 'm3.fits'
+# main function
+def main ():
+    # input file name
+    file_input = 'm3.fits'
 
-# output file name
-file_output = 'm3.png'
+    # output file name
+    file_output = 'm3.png'
 
-# object name
-object_name = 'Globular Cluster M3'
+    # object name
+    object_name = 'Globular Cluster M3'
 
-# colour map
-cmap = 'gray'
+    # colour map
+    cmap = 'gray'
 
-# resolution in DPI
-resolution_dpi = 225
+    # resolution in DPI
+    resolution_dpi = 225
 
-# opening FITS file
-with astropy.io.fits.open (file_input) as hdu_list:
-    # printing HDU information
-    print (hdu_list.info ())
-    
-    # reading FITS header, WCS information, and image data
-    header = hdu_list[0].header
-    wcs    = astropy.wcs.WCS (header)
-    image  = hdu_list[0].data
+    # opening FITS file
+    with astropy.io.fits.open (file_input) as hdu_list:
+        # printing HDU information
+        print (hdu_list.info ())
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111, projection=wcs)
+        # reading FITS header, WCS information, and image data
+        header = hdu_list[0].header
+        wcs    = astropy.wcs.WCS (header)
+        image  = hdu_list[0].data
 
-# axes
-ax.set_title (object_name)
-ax.set_xlabel ('Right Ascension')
-ax.set_ylabel ('Declination')
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111, projection=wcs)
 
-# plotting image
-im = ax.imshow (image, origin='lower', cmap=cmap)
-fig.colorbar (im)
+    # axes
+    ax.set_title (object_name)
+    ax.set_xlabel ('Right Ascension')
+    ax.set_ylabel ('Declination')
 
-# saving file
-print (f'{file_input} ==> {file_output}')
-fig.savefig (file_output, dpi=resolution_dpi)
+    # plotting image
+    im = ax.imshow (image, origin='lower', cmap=cmap)
+    fig.colorbar (im)
+
+    # saving file
+    print (f'{file_input} ==> {file_output}')
+    fig.savefig (file_output, dpi=resolution_dpi)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
