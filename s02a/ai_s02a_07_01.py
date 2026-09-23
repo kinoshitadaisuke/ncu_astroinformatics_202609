@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/22 14:01:06 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/23 18:13:23 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -17,7 +17,7 @@ def main ():
     file_input = 'synthetic_00.data'
 
     # output file name
-    file_output = 'appy_s07_07_01.png'
+    file_output = 'ai_s02a_07_01.png'
 
     # making empty lists for storing data
     list_x = []
