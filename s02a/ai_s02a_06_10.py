@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/22 13:59:44 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/23 14:23:18 (UT+08:00) daisuke>
 #
 
 # importing astropy module
