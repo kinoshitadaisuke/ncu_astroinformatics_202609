@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/13 08:34:28 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/24 10:20:16 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -17,46 +17,52 @@ import sys
 import astropy
 import astropy.io.fits
 
-# construction pf parser object
-descr  = 'printing header of a FITS file'
-parser = argparse.ArgumentParser (description=descr)
+# main function
+def main ():
+    # construction pf parser object
+    descr  = 'printing header of a FITS file'
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding arguments
-parser.add_argument ('fits', help='FITS file name')
+    # adding arguments
+    parser.add_argument ('fits', help='FITS file name')
 
-# command-line argument analysis
-args = parser.parse_args ()
+    # command-line argument analysis
+    args = parser.parse_args ()
 
-# input parameters
-file_fits = args.fits
+    # input parameters
+    file_fits = args.fits
 
-# making pathlib object
-path_fits = pathlib.Path (file_fits)
+    # making pathlib object
+    path_fits = pathlib.Path (file_fits)
 
-# if the file does not exist, then stop
-if not (path_fits.exists ()):
-    # printing message
-    print (f'ERROR:')
-    print (f'ERROR: file "{file_fits}" does not exist!')
-    print (f'ERROR: stopping the script...')
-    print (f'ERROR:')
-    # stopping the script
-    sys.exit (0)
+    # if the file does not exist, then stop
+    if not (path_fits.exists ()):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: file "{file_fits}" does not exist!')
+        print (f'ERROR: stopping the script...')
+        print (f'ERROR:')
+        # stopping the script
+        sys.exit (0)
 
-# if the file is not a FITS file, then stop
-if not (path_fits.suffix == '.fits'):
-    # printing message
-    print (f'ERROR:')
-    print (f'ERROR: file "{file_fits}" is not a FITS file!')
-    print (f'ERROR: stopping the script...')
-    print (f'ERROR:')
-    # stopping the script
-    sys.exit (0)
+    # if the file is not a FITS file, then stop
+    if not (path_fits.suffix == '.fits'):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: file "{file_fits}" is not a FITS file!')
+        print (f'ERROR: stopping the script...')
+        print (f'ERROR:')
+        # stopping the script
+        sys.exit (0)
 
-# opening FITS file
-with astropy.io.fits.open (file_fits) as hdu_list:
-    # reading header of primary HDU
-    header = hdu_list[0].header
+    # opening FITS file
+    with astropy.io.fits.open (file_fits) as hdu_list:
+        # reading header of primary HDU
+        header = hdu_list[0].header
 
-    # printing formatted header
-    print (f'{repr (header)}')
+        # printing formatted header
+        print (f'{repr (header)}')
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
