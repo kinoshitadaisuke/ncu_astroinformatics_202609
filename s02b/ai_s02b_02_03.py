@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/13 08:35:52 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/24 10:23:45 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -16,53 +16,59 @@ import pathlib
 # importing astropy module
 import astropy.table
 
-# constructing parser object
-descr  = 'reading a source catalogue file'
-parser = argparse.ArgumentParser (description=descr)
+# main function
+def main ():
+    # constructing parser object
+    descr  = 'reading a source catalogue file'
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding arguments
-parser.add_argument ('-i', '--input-file', default='', \
-                     help='input catalogue file name')
+    # adding arguments
+    parser.add_argument ('-i', '--input-file', default='', \
+                         help='input catalogue file name')
 
-# command-line argument analysis
-args = parser.parse_args ()
+    # command-line argument analysis
+    args = parser.parse_args ()
 
-# catalogue file name
-file_catalogue = args.input_file
+    # catalogue file name
+    file_catalogue = args.input_file
 
-# making pathlib object
-path_catalogue = pathlib.Path (file_catalogue)
+    # making pathlib object
+    path_catalogue = pathlib.Path (file_catalogue)
 
-# check of catalogue file name
-if (file_catalogue == ''):
-    # printing message
-    print (f'ERROR:')
-    print (f'ERROR: Catalogue file name must be specified.')
-    print (f'ERROR:')
-    # exit
-    sys.exit ()
+    # check of catalogue file name
+    if (file_catalogue == ''):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: Catalogue file name must be specified.')
+        print (f'ERROR:')
+        # exit
+        sys.exit ()
 
-# existence check of catalogue file
-if not (path_catalogue.exists () ):
-    # printing message
-    print (f'ERROR:')
-    print (f'ERROR: Catalogue file "{file_catalogue}" does not exist.')
-    print (f'ERROR:')
-    # exit
-    sys.exit ()
+    # existence check of catalogue file
+    if not (path_catalogue.exists () ):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: Catalogue file "{file_catalogue}" does not exist.')
+        print (f'ERROR:')
+        # exit
+        sys.exit ()
 
-# existence check of catalogue file
-if not (path_catalogue.suffix == '.cat' ):
-    # printing message
-    print (f'ERROR:')
-    print (f'ERROR: Input file must be ".cat" file.')
-    print (f'ERROR:')
-    # exit
-    sys.exit ()
+    # existence check of catalogue file
+    if not (path_catalogue.suffix == '.cat' ):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: Input file must be ".cat" file.')
+        print (f'ERROR:')
+        # exit
+        sys.exit ()
 
-# reading catalogue from a file
-table_source = astropy.table.Table.read (file_catalogue, \
-                                         format='ascii.commented_header')
+    # reading catalogue from a file
+    table_source = astropy.table.Table.read (file_catalogue, \
+                                             format='ascii.commented_header')
 
-# printing table
-print (table_source)
+    # printing table
+    print (table_source)
+
+# execution of main function
+if (__name__ == '__main__'):
+    main ()
