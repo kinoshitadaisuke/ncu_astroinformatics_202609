@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/09/24 10:28:53 (UT+08:00) daisuke>
+# Time-stamp: <2026/09/29 13:39:01 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -29,6 +29,9 @@ import ssl
 def main ():
     # allow insecure downloading
     ssl._create_default_https_context = ssl._create_unverified_context
+
+    # disable AWS S3 dataset routing
+    astroquery.mast.Observations.disable_cloud_dataset()
 
     # units
     u_ha  = astropy.units.hourangle
