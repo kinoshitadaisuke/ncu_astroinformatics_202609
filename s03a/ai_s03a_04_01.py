@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/07 17:19:37 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/20 12:23:16 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -10,34 +10,40 @@ import argparse
 # importing math module
 import math
 
-#
-# command-line argument analysis
-#
+# main function
+def main ():
+    #
+    # command-line argument analysis
+    #
 
-# constructing parser object
-descr  = f"calculation of sine"
-parser = argparse.ArgumentParser (description=descr)
+    # constructing parser object
+    descr  = f"calculation of sine"
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding options
-parser.add_argument ('-a', type=float, default=0.0, \
-                     help=f"angle in degree (default: 0.0 deg)")
+    # adding options
+    parser.add_argument ('-a', type=float, default=0.0, \
+                         help=f"angle in degree (default: 0.0 deg)")
 
-# analysis of command-line arguments
-args = parser.parse_args ()
+    # analysis of command-line arguments
+    args = parser.parse_args ()
 
-# values of input parameters
-a_deg = args.a
+    # values of input parameters
+    a_deg = args.a
 
-#
-# calculation
-#
+    #
+    # calculation
+    #
 
-# conversion from degree into radian
-a_rad = a_deg / 180.0 * math.pi
+    # conversion from degree into radian
+    a_rad = a_deg / 180.0 * math.pi
 
-# calculation of sine
-sin_a = math.sin (a_rad)
+    # calculation of sine
+    sin_a = math.sin (a_rad)
 
-# printing result
-print (f"a       = {a_deg} deg")
-print (f"sin (a) = {sin_a}")
+    # printing result
+    print (f"a       = {a_deg} deg")
+    print (f"sin (a) = {sin_a}")
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
