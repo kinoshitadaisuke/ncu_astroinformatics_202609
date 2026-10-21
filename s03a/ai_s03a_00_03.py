@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/08 08:25:48 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/20 12:47:33 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -14,76 +14,82 @@ import astropy.units
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# units
-u_hr  = astropy.units.hr
-u_day = astropy.units.day
+# main function
+def main ():
+    # units
+    u_hr  = astropy.units.hr
+    u_day = astropy.units.day
 
-# data file name
-file_data = 'appy_s12_00_00.data'
+    # data file name
+    file_data = 'ai_s03a_00_00.data'
 
-# output file name
-file_output = 'appy_s12_00_03.png'
+    # output file name
+    file_output = 'ai_s03a_00_03.png'
 
-# trial period
-p_hr  = numpy.array ([1.0, 1.5, 2.0, 2.5, 3.0, 3.5]) * u_hr
-p_day = p_hr.to (u_day)
+    # trial period
+    p_hr  = numpy.array ([1.0, 1.5, 2.0, 2.5, 3.0, 3.5]) * u_hr
+    p_day = p_hr.to (u_day)
 
-# empty numpy arrays for storing data
-data_mjd   = numpy.array ([])
-data_phase = numpy.array ([])
-data_mag   = numpy.array ([])
-
-# opening file
-with open (file_data, 'r') as fh:
-    # reading file line-by-line
-    for line in fh:
-        # skipping line if the line starts with '#'
-        if (line[0] == '#'):
-            continue
-        # removing line feed at the end of line
-        line = line.strip ()
-        # splitting data
-        (datetime, mjd_str, mag_str) = line.split ()
-        # conversion from string into float
-        mjd   = float (mjd_str)
-        mag   = float (mag_str)
-        # appending the data at the end of numpy arrays
-        data_mjd   = numpy.append (data_mjd, mjd)
-        data_mag   = numpy.append (data_mag, mag)
-
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-
-# making a plot of 2x3 panels
-for i in range (len (p_day)):
-    # making a subplot
-    subplot = 320 + int (i) + 1
-    ax = fig.add_subplot (subplot)
-
-    # calculation of phase
-    p = p_day[i].value
+    # empty numpy arrays for storing data
+    data_mjd   = numpy.array ([])
     data_phase = numpy.array ([])
-    for mjd in data_mjd:
-        phase = mjd / p - int (mjd / p)
-        data_phase = numpy.append (data_phase, phase)
+    data_mag   = numpy.array ([])
 
-    # labels
-    ax.set_xlabel ('Phase')
-    ax.set_ylabel ('Mag [mag]')
+    # opening file
+    with open (file_data, 'r') as fh:
+        # reading file line-by-line
+        for line in fh:
+            # skipping line if the line starts with '#'
+            if (line[0] == '#'):
+                continue
+            # removing line feed at the end of line
+            line = line.strip ()
+            # splitting data
+            (datetime, mjd_str, mag_str) = line.split ()
+            # conversion from string into float
+            mjd   = float (mjd_str)
+            mag   = float (mag_str)
+            # appending the data at the end of numpy arrays
+            data_mjd   = numpy.append (data_mjd, mjd)
+            data_mag   = numpy.append (data_mag, mag)
 
-    # range
-    ax.set_xlim (0.0, 1.0)
-    ax.set_ylim (18.5, 20.7)
-    ax.invert_yaxis ()
+    # making objects "fig" and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 
-    # plotting data
-    label = f"trial period of {p_hr[i]:3.1f}"
-    ax.plot (data_phase, data_mag, \
-             linestyle='None', marker='o', markersize=3, color='blue', \
-             label=label)
-    ax.legend ()
+    # making a plot of 2x3 panels
+    for i in range (len (p_day)):
+        # making a subplot
+        subplot = 320 + int (i) + 1
+        ax = fig.add_subplot (subplot)
 
-# saving the plot into a file
-fig.tight_layout ()
-fig.savefig (file_output, dpi=150)
+        # calculation of phase
+        p = p_day[i].value
+        data_phase = numpy.array ([])
+        for mjd in data_mjd:
+            phase = mjd / p - int (mjd / p)
+            data_phase = numpy.append (data_phase, phase)
+
+        # labels
+        ax.set_xlabel ('Phase')
+        ax.set_ylabel ('Mag [mag]')
+
+        # range
+        ax.set_xlim (0.0, 1.0)
+        ax.set_ylim (18.5, 20.7)
+        ax.invert_yaxis ()
+
+        # plotting data
+        label = f"trial period of {p_hr[i]:3.1f}"
+        ax.plot (data_phase, data_mag, \
+                 linestyle='None', marker='o', markersize=3, color='blue', \
+                 label=label)
+        ax.legend ()
+
+    # saving the plot into a file
+    fig.tight_layout ()
+    fig.savefig (file_output, dpi=150)
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
