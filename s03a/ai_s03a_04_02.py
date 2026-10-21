@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/07 17:19:43 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/20 12:23:33 (UT+08:00) daisuke>
 #
 
 # importing argparse module
@@ -10,34 +10,40 @@ import argparse
 # importing math module
 import math
 
-#
-# command-line argument analysis
-#
+# main function
+def main ():
+    #
+    # command-line argument analysis
+    #
 
-# constructing parser object
-descr  = f"calculation of cosine"
-parser = argparse.ArgumentParser (description=descr)
+    # constructing parser object
+    descr  = f"calculation of cosine"
+    parser = argparse.ArgumentParser (description=descr)
 
-# adding options
-parser.add_argument ('-a', '--angle', type=float, default=0.0, \
-                     help=f"angle in degree (default: 0.0 deg)")
+    # adding options
+    parser.add_argument ('-a', '--angle', type=float, default=0.0, \
+                         help=f"angle in degree (default: 0.0 deg)")
 
-# analysis of command-line arguments
-args = parser.parse_args ()
+    # analysis of command-line arguments
+    args = parser.parse_args ()
 
-# values of input parameters
-a_deg = args.angle
+    # values of input parameters
+    a_deg = args.angle
 
-#
-# calculation
-#
+    #
+    # calculation
+    #
 
-# conversion from degree into radian
-a_rad = a_deg / 180.0 * math.pi
+    # conversion from degree into radian
+    a_rad = a_deg / 180.0 * math.pi
 
-# calculation of cosine
-cos_a = math.cos (a_rad)
+    # calculation of cosine
+    cos_a = math.cos (a_rad)
 
-# printing result
-print (f"a       = {a_deg} deg")
-print (f"cos (a) = {cos_a}")
+    # printing result
+    print (f"a       = {a_deg} deg")
+    print (f"cos (a) = {cos_a}")
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
