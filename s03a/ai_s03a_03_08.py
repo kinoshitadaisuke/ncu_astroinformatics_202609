@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/10/20 12:21:35 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/28 10:37:58 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -17,7 +17,7 @@ def main ():
     file_input = 'linear/4672469.dat'
 
     # output file name
-    file_output = 'appy_s12_03_08.data'
+    file_output = 'ai_s03a_03_08.data'
 
     # shortest trial period
     period_min_min = 785.0
