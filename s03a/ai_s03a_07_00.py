@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/10/20 12:29:50 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/28 11:09:26 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -17,7 +17,7 @@ def main ():
     file_input = 'linear/4672469.dat'
 
     # output file name
-    file_output = 'appy_s12_07_00.png'
+    file_output = 'ai_s03a_07_00.png'
 
     # empty numpy arrays for storing data
     data_mjd = numpy.array ([])
