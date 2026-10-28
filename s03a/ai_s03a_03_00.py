@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/10/20 12:18:57 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/28 10:22:11 (UT+08:00) daisuke>
 #
 
 # importing urllib module
@@ -16,7 +16,7 @@ def main ():
     ssl._create_default_https_context = ssl._create_unverified_context
 
     # URL of data file
-    url_data = 'https://faculty.washington.edu/ivezic/linear/PaperIII/allDAT.tar.gz'
+    url_data = 'https://faculty.washington.edu/ivezic/linear/allDataFinal/allLINEARfinal_dat.tar.gz'
 
     # output file name
     file_output = 'linear.tar.gz'
