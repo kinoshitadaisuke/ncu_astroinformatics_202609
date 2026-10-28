@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/10/20 12:20:14 (UT+08:00) daisuke>
+# Time-stamp: <2026/10/28 10:32:10 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -14,10 +14,10 @@ import matplotlib.backends.backend_agg
 # main function
 def main ():
     # input file name
-    file_input = 'appy_s12_03_03.data'
+    file_input = 'ai_s03a_03_03.data'
 
     # output file name
-    file_output = 'appy_s12_03_04.png'
+    file_output = 'ai_s03a_03_04.png'
 
     # empty numpy arrays for storing data
     data_per = numpy.array ([])
