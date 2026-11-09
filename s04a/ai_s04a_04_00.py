@@ -1,26 +1,32 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/20 11:11:40 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/09 10:45:54 (UT+08:00) daisuke>
 #
 
 # importing rebound module
 import rebound
 
-# name of simulation file
-file_sim = 'binary.bin'
+# main function
+def main ():
+    # name of simulation file
+    file_sim = 'binary.bin'
 
-# constructing a simulation object
-sim = rebound.Simulation ()
+    # constructing a simulation object
+    sim = rebound.Simulation ()
 
-# adding 2 solar mass star
-sim.add (m=2.0)
+    # adding 2 solar mass star
+    sim.add (m=2.0)
 
-# adding 1 solar mass star of a=20 au and e=0.6
-sim.add (m=1.0, a=20.0, e=0.6)
+    # adding 1 solar mass star of a=20 au and e=0.6
+    sim.add (m=1.0, a=20.0, e=0.6)
 
-# printing simulation object
-print (sim)
+    # printing simulation object
+    print (sim)
 
-# saving simulation into a file
-sim.save_to_file (file_sim)
+    # saving simulation into a file
+    sim.save_to_file (file_sim)
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
