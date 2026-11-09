@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/26 22:03:39 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/09 10:47:06 (UT+08:00) daisuke>
 #
 
 # importing datetime module
@@ -16,66 +16,72 @@ import rebound
 # importing ssl module
 import ssl
 
-# allow insecure downloading
-ssl._create_default_https_context = ssl._create_unverified_context
+# main function
+def main ():
+    # allow insecure downloading
+    ssl._create_default_https_context = ssl._create_unverified_context
 
-# simulation file to be generated
-file_sim = 'comets.bin'
+    # simulation file to be generated
+    file_sim = 'comets.bin'
 
-# major bodies
-majorbody = {
-    'Sun':     '10',
-    'Mercury': '1',
-    'Venus':   '2',
-    'Earth':   '3',
-    'Mars':    '4',
-    'Jupiter': '5',
-    'Saturn':  '6',
-    'Uranus':  '7',
-    'Neptune': '8',
-    'Pluto':   '9',
-}
+    # major bodies
+    majorbody = {
+        'Sun':     '10',
+        'Mercury': '1',
+        'Venus':   '2',
+        'Earth':   '3',
+        'Mars':    '4',
+        'Jupiter': '5',
+        'Saturn':  '6',
+        'Uranus':  '7',
+        'Neptune': '8',
+        'Pluto':   '9',
+    }
 
-# minor bodies
-minorbody = {
-    '1P/Halley':                 'DES=1P; CAP',
-    '2P/Encke':                  'DES=2P; CAP',
-    '8P/Tuttle':                 'DES=8P; CAP',
-    '9P/Tempel':                 'DES=9P; CAP',
-    '17P/Holmes':                'DES=17P; CAP',
-    '21P/Giacobini-Zinner':      'DES=21P; CAP',
-    '22P/Kopff':                 'DES=22P; CAP',
-    '23P/Brorsen-Metcalf':       'DES=23P; CAP',
-    '29P/Schwassmann-Wachmann':  'DES=29P; CAP',
-    '55P/Tempel-Tuttle':         'DES=55P; CAP',
-    '63P/Wild':                  'DES=63P; CAP',
-    '67P/Churyumov-Gerasimenko': 'DES=67P; CAP',
-    '109P/Swift-Tuttle':         'DES=109P; CAP',
-    '122P/de Vico':              'DES=122P; CAP',
-    '153P/Ikeya-Zhang':          'DES=153P; CAP',
-}
+    # minor bodies
+    minorbody = {
+        '1P/Halley':                 'DES=1P; CAP',
+        '2P/Encke':                  'DES=2P; CAP',
+        '8P/Tuttle':                 'DES=8P; CAP',
+        '9P/Tempel':                 'DES=9P; CAP',
+        '17P/Holmes':                'DES=17P; CAP',
+        '21P/Giacobini-Zinner':      'DES=21P; CAP',
+        '22P/Kopff':                 'DES=22P; CAP',
+        '23P/Brorsen-Metcalf':       'DES=23P; CAP',
+        '29P/Schwassmann-Wachmann':  'DES=29P; CAP',
+        '55P/Tempel-Tuttle':         'DES=55P; CAP',
+        '63P/Wild':                  'DES=63P; CAP',
+        '67P/Churyumov-Gerasimenko': 'DES=67P; CAP',
+        '109P/Swift-Tuttle':         'DES=109P; CAP',
+        '122P/de Vico':              'DES=122P; CAP',
+        '153P/Ikeya-Zhang':          'DES=153P; CAP',
+    }
 
-# epoch of orbital elements
-t_epoch = '2000-01-01 12:00:00'
+    # epoch of orbital elements
+    t_epoch = '2000-01-01 12:00:00'
 
-# construction of a simulation
-sim = rebound.Simulation ()
+    # construction of a simulation
+    sim = rebound.Simulation ()
 
-# adding major bodies
-for name in majorbody.keys ():
-    sim.add (majorbody[name], date=t_epoch)
+    # adding major bodies
+    for name in majorbody.keys ():
+        sim.add (majorbody[name], date=t_epoch)
 
-# adding minor bodies
-for name in minorbody.keys ():
-    sim.add (minorbody[name], date=t_epoch)
+    # adding minor bodies
+    for name in minorbody.keys ():
+        sim.add (minorbody[name], date=t_epoch)
 
-# setting for active particles
-#  sim.N_active = 10 ==> only first 10 objects affect their gravity
-#                        to other particles
-sim.N_active = 10
+    # setting for active particles
+    #  sim.N_active = 10 ==> only first 10 objects affect their gravity
+    #                        to other particles
+    sim.N_active = 10
 
-# printing simulation
-print (sim)
-    
-# saving simulation to a file
-sim.save_to_file (file_sim)
+    # printing simulation
+    print (sim)
+
+    # saving simulation to a file
+    sim.save_to_file (file_sim)
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
