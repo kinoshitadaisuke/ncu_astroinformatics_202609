@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/21 16:53:59 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/09 10:41:49 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -17,68 +17,74 @@ import astroquery.jplhorizons
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
-# file name
-file_fig = 'appy_s14_02_00.png'
+# main function
+def main ():
+    # file name
+    file_fig = 'appy_s14_02_00.png'
 
-# target list
-# Earth, Mars
-list_obj = ['399', '499']
+    # target list
+    # Earth, Mars
+    list_obj = ['399', '499']
 
-# start date
-date_start = '2010-01-01'
+    # start date
+    date_start = '2010-01-01'
 
-# end date
-date_end   = '2040-01-01'
+    # end date
+    date_end   = '2040-01-01'
 
-# step
-step = '10d'
+    # step
+    step = '10d'
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+    # making objects "fig", "canvas", and "ax"
+    fig    = matplotlib.figure.Figure ()
+    canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+    ax     = fig.add_subplot (111)
 
-# labels
-ax.set_xlabel ('Time [year]')
-ax.set_ylabel ('Distance between Earth and Mars [au]')
+    # labels
+    ax.set_xlabel ('Time [year]')
+    ax.set_ylabel ('Distance between Earth and Mars [au]')
 
-# axes
-ax.set_ylim (0, 3.5)
-ax.grid ()
+    # axes
+    ax.set_ylim (0, 3.5)
+    ax.grid ()
 
-# getting positions of Earth
-earth = astroquery.jplhorizons.Horizons (id=list_obj[0], id_type=None, \
-                                         location='@ssb', \
-                                         epochs={'start': date_start, \
-                                                 'stop': date_end, \
-                                                 'step': step})
-vec_earth = earth.vectors ()
+    # getting positions of Earth
+    earth = astroquery.jplhorizons.Horizons (id=list_obj[0], id_type=None, \
+                                             location='@ssb', \
+                                             epochs={'start': date_start, \
+                                                     'stop': date_end, \
+                                                     'step': step})
+    vec_earth = earth.vectors ()
 
-# getting positions of Mars
-mars = astroquery.jplhorizons.Horizons (id=list_obj[1], id_type=None, \
-                                        location='@ssb', \
-                                        epochs={'start': date_start, \
-                                                'stop': date_end, \
-                                                'step': step})
-vec_mars = mars.vectors ()
+    # getting positions of Mars
+    mars = astroquery.jplhorizons.Horizons (id=list_obj[1], id_type=None, \
+                                            location='@ssb', \
+                                            epochs={'start': date_start, \
+                                                    'stop': date_end, \
+                                                    'step': step})
+    vec_mars = mars.vectors ()
 
-# date/time
-datetime   = astropy.time.Time (vec_earth['datetime_jd'], format='jd')
-datetime64 = numpy.array (datetime.isot, dtype='datetime64')
+    # date/time
+    datetime   = astropy.time.Time (vec_earth['datetime_jd'], format='jd')
+    datetime64 = numpy.array (datetime.isot, dtype='datetime64')
 
-# distance between Earth and Mars
-delta_x = vec_earth['x'] - vec_mars['x']
-delta_y = vec_earth['y'] - vec_mars['y']
-delta_z = vec_earth['z'] - vec_mars['z']
-dist    = numpy.sqrt (delta_x**2 + delta_y**2 + delta_z**2)
+    # distance between Earth and Mars
+    delta_x = vec_earth['x'] - vec_mars['x']
+    delta_y = vec_earth['y'] - vec_mars['y']
+    delta_z = vec_earth['z'] - vec_mars['z']
+    dist    = numpy.sqrt (delta_x**2 + delta_y**2 + delta_z**2)
 
-# plotting data
-ax.plot (datetime64, dist, \
-         linestyle='-', linewidth=3, color='red', \
-         label='Distance between Earth and Mars')
+    # plotting data
+    ax.plot (datetime64, dist, \
+             linestyle='-', linewidth=3, color='red', \
+             label='Distance between Earth and Mars')
 
-# showing legend
-ax.legend ()
+    # showing legend
+    ax.legend ()
 
-# saving the plot into a file
-fig.savefig (file_fig, dpi=150)
+    # saving the plot into a file
+    fig.savefig (file_fig, dpi=150)
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
