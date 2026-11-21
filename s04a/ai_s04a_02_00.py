@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/11/09 10:41:49 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/19 12:24:50 (UT+08:00) daisuke>
 #
 
 # importing numpy module
@@ -20,7 +20,7 @@ import matplotlib.backends.backend_agg
 # main function
 def main ():
     # file name
-    file_fig = 'appy_s14_02_00.png'
+    file_fig = 'ai_s04a_02_00.png'
 
     # target list
     # Earth, Mars
