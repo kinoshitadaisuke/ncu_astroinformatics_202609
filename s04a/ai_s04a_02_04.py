@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/11/09 10:43:04 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/19 12:33:45 (UT+08:00) daisuke>
 #
 
 # importing astropy module
@@ -17,7 +17,7 @@ import matplotlib.backends.backend_agg
 # main function
 def main ():
     # file name
-    file_fig = 'appy_s14_02_04.png'
+    file_fig = 'ai_s04a_02_04.png'
 
     # date/time
     t_str = '2026-07-01T12:00:00'
