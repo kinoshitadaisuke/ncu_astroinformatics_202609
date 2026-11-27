@@ -1,32 +1,38 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/28 12:16:56 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/27 12:42:36 (UT+08:00) daisuke>
 #
 
-# data file
-file_data = 'ast_taxonomy/data/taxonomy10.tab'
+# main function
+def main ():
+    # data file
+    file_data = 'ast_taxonomy/data/taxonomy10.tab'
 
-# opening data file
-with open (file_data, 'r') as fh:
-    # reading data file line-by-line
-    for line in fh:
-        # extracting data
-        number    = int (line[0:7])
-        bus_class = line[80:83]
-        # finding taxonomic class
-        if (bus_class[0] == 'C'):
-            taxonomy = 'C'
-        elif (bus_class[0] == 'S'):
-            taxonomy = 'S'
-        elif (bus_class[0] == 'X'):
-            taxonomy = 'X'
-        elif (bus_class[0] == 'V'):
-            taxonomy = 'V'
-        elif (bus_class[0] == 'D'):
-            taxonomy = 'D'
-        else:
-            taxonomy = 'others'
-        # printing taxonomic classification
-        if not ( (taxonomy == 'others') or (number == 0) ):
-            print (f'{number:6d}  ==>  {taxonomy}-type or its variant')
+    # opening data file
+    with open (file_data, 'r') as fh:
+        # reading data file line-by-line
+        for line in fh:
+            # extracting data
+            number    = int (line[0:7])
+            bus_class = line[80:83]
+            # finding taxonomic class
+            if (bus_class[0] == 'C'):
+                taxonomy = 'C'
+            elif (bus_class[0] == 'S'):
+                taxonomy = 'S'
+            elif (bus_class[0] == 'X'):
+                taxonomy = 'X'
+            elif (bus_class[0] == 'V'):
+                taxonomy = 'V'
+            elif (bus_class[0] == 'D'):
+                taxonomy = 'D'
+            else:
+                taxonomy = 'others'
+            # printing taxonomic classification
+            if not ( (taxonomy == 'others') or (number == 0) ):
+                print (f'{number:6d}  ==>  {taxonomy}-type or its variant')
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
