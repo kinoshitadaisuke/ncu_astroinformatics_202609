@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/06/02 10:55:44 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/27 12:48:28 (UT+08:00) daisuke>
 #
 
 # importing urllib module
@@ -10,37 +10,43 @@ import urllib.request
 # importing ssl module
 import ssl
 
-# allow insecure downloading
-ssl._create_default_https_context = ssl._create_unverified_context
+# main function
+def main ():
+    # allow insecure downloading
+    ssl._create_default_https_context = ssl._create_unverified_context
 
-# URL of data file
-url_data = 'https://sbnarchive.psi.edu/pds4/non_mission/neowise_diameters_albedos_V2_0.zip'
+    # URL of data file
+    url_data = 'https://sbnarchive.psi.edu/pds4/non_mission/neowise_diameters_albedos_V2_0.zip'
 
-# output file name
-file_output = 'neowise_albedo.zip'
+    # output file name
+    file_output = 'neowise_albedo.zip'
 
-# printing status
-print (f'Now, fetching {url_data}...')
+    # printing status
+    print (f'Now, fetching {url_data}...')
 
-# making a request object
-req = urllib.request.Request (url_data)
-req.add_header ('User-Agent', 'Mozilla/5.0')
+    # making a request object
+    req = urllib.request.Request (url_data)
+    req.add_header ('User-Agent', 'Mozilla/5.0')
 
-# opening URL
-with urllib.request.urlopen (req) as fh_read:
-    # reading data
-    data_byte = fh_read.read ()
+    # opening URL
+    with urllib.request.urlopen (req) as fh_read:
+        # reading data
+        data_byte = fh_read.read ()
 
-# printing status
-print (f'Finished fetching {url_data}!')
+    # printing status
+    print (f'Finished fetching {url_data}!')
 
-# printing status
-print (f'Now, writing data into file "{file_output}"...')
+    # printing status
+    print (f'Now, writing data into file "{file_output}"...')
 
-# opening file for writing
-with open (file_output, 'wb') as fh_write:
-    # writing data
-    fh_write.write (data_byte)
+    # opening file for writing
+    with open (file_output, 'wb') as fh_write:
+        # writing data
+        fh_write.write (data_byte)
 
-# printing status
-print (f'Finished writing data into file "{file_output}"!')
+    # printing status
+    print (f'Finished writing data into file "{file_output}"!')
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
