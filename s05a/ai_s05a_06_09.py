@@ -1,27 +1,33 @@
 #!/usr/bin/env python3
 
 #
-# Time-stamp: <2026/05/28 12:17:20 (UT+08:00) daisuke>
+# Time-stamp: <2026/11/27 12:43:28 (UT+08:00) daisuke>
 #
 
-# data file
-file_albedo = 'compil.ast.albedos/data/albedos.tab'
+# main function
+def main ():
+    # data file
+    file_albedo = 'compil.ast.albedos/data/albedos.tab'
 
-# printing header
-print (f'# asteroid number, albedo, albedo error')
+    # printing header
+    print (f'# asteroid number, albedo, albedo error')
 
-# opening data file
-with open (file_albedo, 'r') as fh:
-    # reading data file line-by-line
-    for line in fh:
-        # extracting data
-        number          = int (line[0:6])
-        iras_albedo     = float (line[45:51])
-        iras_albedo_err = float (line[52:57])
-        quality_code    = int (line[58:59])
-        # rejecting data if no measurement done by IRAS
-        if (quality_code == 0):
-            continue
-        # printing data
-        if (number > 0):
-            print (f'{number:6d} {iras_albedo:5.3f} {iras_albedo_err:5.3f}')
+    # opening data file
+    with open (file_albedo, 'r') as fh:
+        # reading data file line-by-line
+        for line in fh:
+            # extracting data
+            number          = int (line[0:6])
+            iras_albedo     = float (line[45:51])
+            iras_albedo_err = float (line[52:57])
+            quality_code    = int (line[58:59])
+            # rejecting data if no measurement done by IRAS
+            if (quality_code == 0):
+                continue
+            # printing data
+            if (number > 0):
+                print (f'{number:6d} {iras_albedo:5.3f} {iras_albedo_err:5.3f}')
+
+# executing main function
+if (__name__ == '__main__'):
+    main ()
